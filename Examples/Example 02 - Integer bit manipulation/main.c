@@ -1,4 +1,4 @@
-//! Example 01 - Integer bit manipulation
+//! Example 02 - Integer bit manipulation
 /*!
   This simply example demonstrates the use of bit manipulation.
 
