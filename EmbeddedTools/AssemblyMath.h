@@ -58,7 +58,7 @@
   \param iNumber is an undefined parameter. It's the number that will have your double calculated.
   \return "Returns" twice the parameter.
 */
-#define     uiDouble(iNumber)                             ((iNumber) << 1)
+#define     uiDouble(iNumber)                             iNumber >= 0 ? ((iNumber) << 1) : - ((uiModule(iNumber)) << 1)
 
 //! Macro: Half
 /*!
@@ -66,7 +66,7 @@
   \param iNumber is an undefined parameter. It's the number that will have your half calculated.
   \return "Returns" to half of the parameter.
 */
-#define     uiHalf(iNumber)                               ((iNumber) >> 1)
+#define     uiHalf(iNumber)                               iNumber >= 0 ? ((iNumber) >> 1) : - ((uiModule(iNumber)) >> 1)
 
 //! Macro: Multiplication
 /*!
@@ -75,7 +75,7 @@
   \param uiExpoentOfTwo is an undefined parameter. It's the multiplier: this parameter must be "n" for 2^n, n >= 0.
   \return "Returns" the result of multiplication.
 */
-#define     uiMultiply(iNumber, uiExpoentOfTwo)           ((iNumber) << (uiExpoentOfTwo))
+#define     uiMultiply(iNumber, uiExpoentOfTwo)           iNumber >= 0 ? ((iNumber) << (uiExpoentOfTwo)) : -((ui8Module(iNumber)) << (uiExpoentOfTwo))
 
 //! Macro: Division
 /*!
@@ -84,7 +84,7 @@
   \param uiExpoentOfTwo is an undefined parameter. It's the divisor of division: this parameter must be "n" for 2^n, n >= 0.
   \return "Returns" the rest of the division of the parameter.
 */
-#define     uiDivide(iNumber, uiExpoentOfTwo)             ((iNumber) >> (uiExpoentOfTwo))
+#define     uiDivide(iNumber, uiExpoentOfTwo)             iNumber >= 0 ? ((iNumber) >> (uiExpoentOfTwo)) : -((ui8Module(iNumber)) >> (uiExpoentOfTwo))
 
 //! Macro: Rest of Division
 /*!
@@ -93,7 +93,7 @@
   \param uiExpoentOfTwo is an undefined parameter. It's the divisor of division: this parameter must be "n" for 2^n, n >= 0.
   \return "Returns" the rest of the division of the parameter.
 */
-#define     uiRestOfDivision(iNumber, uiExpoentOfTwo)     ((iNumber) & (((1 << (uiExpoentOfTwo)) - 1)))
+#define     uiRestOfDivision(iNumber, uiExpoentOfTwo)     iNumber >= 0 ? ((iNumber) & (((1 << (uiExpoentOfTwo)) - 1))) : -((ui8Module(iNumber)) & (((1 << (uiExpoentOfTwo)) - 1))) 
 
 //! Macro: Larger
 /*!
