@@ -42,8 +42,8 @@
 
 #include "EmbeddedTools.h"
 
-#define AMOUNT_OF_FRACTIONARY_BITS                                21
-#define fixed_t                                                   int32_t
+#define AMOUNT_OF_FRACTIONARY_BITS                                12
+#define fixed_t                                                   int16_t
 
 #define uiRoundingFactor                                          (1 << (AMOUNT_OF_FRACTIONARY_BITS - 1))
 
