@@ -42,22 +42,42 @@
 
 #include "EmbeddedTools.h"
 
-#define AMOUNT_OF_FRACTIONARY_BITS                                12
-#define fixed_t                                                   int16_t
+//#define FIXED_SIZE_8_BIT
+//#define FIXED_SIZE_16_BIT
+#define FIXED_SIZE_32_BIT
 
-#define uiRoundingFactor                                          (1 << (AMOUNT_OF_FRACTIONARY_BITS - 1))
+#define AMOUNT_OF_FRACTIONARY_BITS                                  21
 
-#define uiGetFixedMinimumNumber()                                 -(1 << ((((uint8_t) sizeof(fixed_t)) << 3) - AMOUNT_OF_FRACTIONARY_BITS - 1))
-#define fGetFixedResolution()                                     pow(2, -(AMOUNT_OF_FRACTIONARY_BITS - 1))
-#define fGetFixedMaximumNumber()                                  (-uiGetFixedMinimumNumber() - fGetFixedResolution())
+#if defined(FIXED_SIZE_8_BIT)
+    #define fixed_t                                                 int8_t
+    #define fixed_buffer_t                                          int16_t
+    #define FIXED_MAX_VALUE                                         INT8_MAX
+    #define FIXED_MIN_VALUE                                         INT8_MIN
+#elif defined(FIXED_SIZE_16_BIT)
+    #define fixed_t                                                 int16_t
+    #define fixed_buffer_t                                          int32_t
+    #define FIXED_MAX_VALUE                                         INT16_MAX
+    #define FIXED_MIN_VALUE                                         INT16_MIN
+#elif defined(FIXED_SIZE_32_BIT)
+    #define fixed_t                                                 int32_t
+    #define fixed_buffer_t                                          int64_t
+    #define FIXED_MAX_VALUE                                         INT32_MAX
+    #define FIXED_MIN_VALUE                                         INT32_MIN
+#endif
 
-#define fxFloatToFixed(fNumber)                                   ((fixed_t) ((fNumber) * (float)(1 << (AMOUNT_OF_FRACTIONARY_BITS))))
-#define fFixedToFloat(fxNumber)                                   ((float) ((fxNumber) / (float) (1 << (AMOUNT_OF_FRACTIONARY_BITS))))
-#define uiFixedToInt(fxNumber)                                    ((fxNumber) >> AMOUNT_OF_FRACTIONARY_BITS)
+#define uiRoundingFactor                                            (1 << (AMOUNT_OF_FRACTIONARY_BITS - 1))
 
-#define fxFixedAdd(...)                                           fxFixedAdd(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
-#define fxFixedMultiply(...)                                      fxFixedMultiply(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
-#define fxFixedDivide(...)                                        fxFixedDivide(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
+#define uiGetFixedMinimumNumber()                                   -(1 << ((((uint8_t) sizeof(fixed_t)) << 3) - AMOUNT_OF_FRACTIONARY_BITS - 1))
+#define fGetFixedResolution()                                       pow(2, -(AMOUNT_OF_FRACTIONARY_BITS - 1))
+#define fGetFixedMaximumNumber()                                    (-uiGetFixedMinimumNumber() - fGetFixedResolution())
+
+#define fxFloatToFixed(fNumber)                                     ((fixed_t) ((fNumber) * (float)(1 << (AMOUNT_OF_FRACTIONARY_BITS))))
+#define fFixedToFloat(fxNumber)                                     ((float) ((fxNumber) / (float) (1 << (AMOUNT_OF_FRACTIONARY_BITS))))
+#define uiFixedToInt(fxNumber)                                      ((fxNumber) >> AMOUNT_OF_FRACTIONARY_BITS)
+
+#define fxFixedAdd(...)                                             fxFixedAdd(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
+#define fxFixedMultiply(...)                                        fxFixedMultiply(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
+#define fxFixedDivide(...)                                          fxFixedDivide(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
 
 fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...);
 fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...);
