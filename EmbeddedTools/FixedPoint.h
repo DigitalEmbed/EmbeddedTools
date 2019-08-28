@@ -65,8 +65,6 @@
     #define FIXED_MIN_VALUE                                         INT32_MIN
 #endif
 
-#define uiRoundingFactor                                            (1 << (AMOUNT_OF_FRACTIONARY_BITS - 1))
-
 #define uiGetFixedMinimumNumber()                                   -(1 << ((((uint8_t) sizeof(fixed_t)) << 3) - AMOUNT_OF_FRACTIONARY_BITS - 1))
 #define fGetFixedResolution()                                       pow(2, -(AMOUNT_OF_FRACTIONARY_BITS - 1))
 #define fGetFixedMaximumNumber()                                    (-uiGetFixedMinimumNumber() - fGetFixedResolution())
