@@ -41,6 +41,14 @@
 #endif
 
 /*!
+  Standard C Libraries
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <math.h>    
+
+/*!
   EmbeddedTools system libraries.
 */
 #include "Bits.h"
