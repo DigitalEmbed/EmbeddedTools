@@ -1,5 +1,7 @@
 #include "FixedPoint.h"
 
+#define uiRoundingFactor                                            (1UL << (AMOUNT_OF_FRACTIONARY_BITS - 1))
+
 fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
