@@ -3,76 +3,76 @@
 fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
-  int32_t i32Sum = 0;
-  int16_t i16Result = 0;
+  fixed_buffer_t fxbSum = 0;
+  fixed_t fxResult = 0;
   while (iAmountOfNumbers--){
-    i32Sum += va_arg(vaMyArguments, int);
+    fxbSum += va_arg(vaMyArguments, int);
   }
   va_end(vaMyArguments);
-  if (i32Sum >= INT16_MAX){
-    return INT16_MAX;
+  if (fxbSum >= FIXED_MAX_VALUE){
+    return FIXED_MAX_VALUE;
   }
-  else if (i32Sum <= INT16_MIN){
-    return INT16_MIN;
+  else if (fxbSum <= FIXED_MIN_VALUE){
+    return FIXED_MIN_VALUE;
   }
-  i16Result = (int16_t) i32Sum;
-  return i16Result;
+  fxResult = (fixed_t) fxbSum;
+  return fxResult;
 }
 
 fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
-  int32_t i32Multiply = 0;
-  int16_t i16Result = 0;
+  fixed_buffer_t fxbMultiply = 0;
+  fixed_t fxResult = 0;
   while (iAmountOfNumbers--){
-    if (i32Multiply == 0){
-        i32Multiply = va_arg(vaMyArguments, int);
+    if (fxbMultiply == 0){
+        fxbMultiply = va_arg(vaMyArguments, int);
     }
     else{
-        i32Multiply = (((i32Multiply * va_arg(vaMyArguments, int)) + uiRoundingFactor) >> AMOUNT_OF_FRACTIONARY_BITS);
+        fxbMultiply = (((fxbMultiply * va_arg(vaMyArguments, int)) + uiRoundingFactor) >> AMOUNT_OF_FRACTIONARY_BITS);
     }
   }
   va_end(vaMyArguments);
-  if (i32Multiply >= INT16_MAX){
-    return INT16_MAX;
+  if (fxbMultiply >= FIXED_MAX_VALUE){
+    return FIXED_MAX_VALUE;
   }
-  else if (i32Multiply <= INT16_MIN){
-    return INT16_MIN;
+  else if (fxbMultiply <= FIXED_MIN_VALUE){
+    return FIXED_MIN_VALUE;
   }
-  i16Result = (int16_t) i32Multiply;
-  return i16Result;
+  fxResult = (fixed_t) fxbMultiply;
+  return fxResult;
 }
 
 fixed_t (fxFixedDivide)(int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
-  int32_t i32Divisor = 0;
-  int32_t i32Dividend = 0;
-  int16_t i16Result = 0;
+  fixed_buffer_t fxbDivisor = 0;
+  fixed_buffer_t fxbDividend = 0;
+  fixed_t fxResult = 0;
   while (iAmountOfNumbers--){
-    if (i32Divisor == 0){
-        i32Divisor = va_arg(vaMyArguments, int);
+    if (fxbDivisor == 0){
+        fxbDivisor = va_arg(vaMyArguments, int);
     }
     else{
-        i32Dividend = va_arg(vaMyArguments, int);
-        if (i32Dividend == 0){
-            if (i32Divisor > 0){
-                return INT16_MAX;
+        fxbDividend = va_arg(vaMyArguments, int);
+        if (fxbDividend == 0){
+            if (fxbDivisor > 0){
+                return FIXED_MAX_VALUE;
             }
             else{
-                return INT16_MIN;
+                return FIXED_MIN_VALUE;
             }
         }
-        i32Divisor = ((i32Divisor << AMOUNT_OF_FRACTIONARY_BITS) + (i32Dividend >> 1)) / i32Dividend;
+        fxbDivisor = ((fxbDivisor << AMOUNT_OF_FRACTIONARY_BITS) + (fxbDividend >> 1)) / fxbDividend;
     }
   }
   va_end(vaMyArguments);
-  if (i32Divisor >= INT16_MAX){
-    return INT16_MAX;
+  if (fxbDivisor >= FIXED_MAX_VALUE){
+    return FIXED_MAX_VALUE;
   }
-  else if (i32Divisor <= INT16_MIN){
-    return INT16_MIN;
+  else if (fxbDivisor <= FIXED_MIN_VALUE){
+    return FIXED_MIN_VALUE;
   }
-  i16Result = (int16_t) i32Divisor;
-  return i16Result;
+  fxResult = (fixed_t) fxbDivisor;
+  return fxResult;
 }
