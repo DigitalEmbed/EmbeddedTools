@@ -53,6 +53,8 @@
 */
 #include "Bits.h"
 #include "AssemblyMath.h"
+#include "FixedPoint.h"
+#include "BitVector.h"
 
 #ifdef __cplusplus
   }
