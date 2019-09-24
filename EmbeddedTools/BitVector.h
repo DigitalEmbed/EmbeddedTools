@@ -40,7 +40,7 @@
 
 //! Macro: Static Bit Vector Allocation
 /*!
-  This macro are for calculate the iNumber of cell of bit-vectors type.
+  This macro is for calculate the iNumber of cell of bit-vectors type.
 */
 #define       uiBitVectorSize(uiNumberOfBits)                                                                   ((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits) >> 3) + 1)
 

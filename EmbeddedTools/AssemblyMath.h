@@ -58,7 +58,7 @@
   \param iNumber is an undefined parameter. It's the number that will have your double calculated.
   \return "Returns" twice the parameter.
 */
-#define     uiDouble(iNumber)                             iNumber >= 0 ? ((iNumber) << 1) : - ((uiModule(iNumber)) << 1)
+#define     uiDouble(iNumber)                             ((uiModule(iNumber)) << 1)
 
 //! Macro: Half
 /*!

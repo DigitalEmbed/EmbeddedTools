@@ -42,12 +42,25 @@
 
 #include "EmbeddedTools.h"
 
-//#define FIXED_SIZE_8_BIT
-//#define FIXED_SIZE_16_BIT
+//! Macro: Amount of fixed_t Bits Macro
+/*!
+  It's amount of bits used by fixed_t types. The available values for this macro are:
+    - FIXED_SIZE_8_BIT
+    - FIXED_SIZE_16_BIT
+    - FIXED_SIZE_32_BIT
+*/
 #define FIXED_SIZE_32_BIT
 
+//! Macro: Amount of Fractionary fixed_t Bits Macro
+/*!
+  It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
+*/
 #define AMOUNT_OF_FRACTIONARY_BITS                                  21
 
+//! Macro: fixed_t Macros
+/*!
+  This macros are for facilitate the use of this library.
+*/
 #if defined(FIXED_SIZE_8_BIT)
     #define fixed_t                                                 int8_t
     #define fixed_buffer_t                                          int16_t
@@ -65,21 +78,34 @@
     #define FIXED_MIN_VALUE                                         INT32_MIN
 #endif
 
+
+//! Macro: fixed_t Type Abrangency
+/*!
+  These macros are for facilitate the use of this library.
+*/
 #define uiGetFixedMinimumNumber()                                   -(1 << ((((uint8_t) sizeof(fixed_t)) << 3) - AMOUNT_OF_FRACTIONARY_BITS - 1))
 #define fGetFixedResolution()                                       pow(2, -(AMOUNT_OF_FRACTIONARY_BITS - 1))
 #define fGetFixedMaximumNumber()                                    (-uiGetFixedMinimumNumber() - fGetFixedResolution())
 
+//! Macro: fixed_t Type Convertions
+/*!
+  These macros are for facilitate the use of this library.
+*/
 #define fxFloatToFixed(fNumber)                                     ((fixed_t) ((fNumber) * (float)(1 << (AMOUNT_OF_FRACTIONARY_BITS))))
 #define fFixedToFloat(fxNumber)                                     ((float) ((fxNumber) / (float) (1 << (AMOUNT_OF_FRACTIONARY_BITS))))
 #define uiFixedToInt(fxNumber)                                      ((fxNumber) >> AMOUNT_OF_FRACTIONARY_BITS)
 
+//! Macro: Auto iAmountOfNumbers Calculator
+/*!
+  These macros are for facilitate the use of this library.
+*/
 #define fxFixedAdd(...)                                             fxFixedAdd(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
 #define fxFixedMultiply(...)                                        fxFixedMultiply(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
 #define fxFixedDivide(...)                                          fxFixedDivide(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
 
-fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...);
-fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...);
-fixed_t (fxFixedDivide)(int iAmountOfNumbers, ...);
+fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...);                    /*!< fixed_t type function. */
+fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...);               /*!< fixed_t type function. */
+fixed_t (fxFixedDivide)(int iAmountOfNumbers, ...);                 /*!< fixed_t type function. */
 
 #ifdef __cplusplus
   }

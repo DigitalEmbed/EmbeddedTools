@@ -1,7 +1,18 @@
 #include "FixedPoint.h"
 
+//! Macro: Rounding Factor Calculator
+/*!
+  This macro is for facilitate the use of this library.
+*/
 #define uiRoundingFactor                                            (1UL << (AMOUNT_OF_FRACTIONARY_BITS - 1))
 
+//! Function: fixed_t Adder
+/*!
+  Summs fixed_t type numbers.
+  \param iAmountOfNumbers is a integer number. This value is automatic and should ignored. It's the amount of numbers that will be summed. 
+  \param ... is a fixed_t type numbers. It's the numbers that will be summed.
+  \return Returns operation result.
+*/
 fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
@@ -21,6 +32,13 @@ fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...){
   return fxResult;
 }
 
+//! Function: fixed_t Multiplier
+/*!
+  Multiplies fixed_t type numbers.
+  \param iAmountOfNumbers is a integer number. This value is automatic and should ignored. It's the amount of numbers that will be multiplied. 
+  \param ... is a fixed_t type numbers. It's the numbers that will be multiplied.
+  \return Returns operation result.
+*/
 fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
@@ -45,6 +63,13 @@ fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...){
   return fxResult;
 }
 
+//! Function: fixed_t Divider
+/*!
+  Divides fixed_t type numbers.
+  \param iAmountOfNumbers is a integer number. This value is automatic and should ignored. It's the amount of numbers that will be divided. 
+  \param ... is a fixed_t type numbers. It's the numbers that will be divided.
+  \return Returns operation result.
+*/
 fixed_t (fxFixedDivide)(int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
