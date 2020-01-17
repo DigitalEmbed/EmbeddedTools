@@ -1,4 +1,4 @@
-//! EmbeddedTools Version 1.0b
+//! EmbeddedTools Version 2.0b
 /*!
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
@@ -33,79 +33,72 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef FixedPoint_H
-#define FixedPoint_H
+#ifndef __FIXED_POINT_HEADER__
+#define __FIXED_POINT_HEADER__
 
 #ifdef __cplusplus
   extern "C" {
 #endif
 
-#include "EmbeddedTools.h"
-
-//! Macro: Amount of fixed_t Bits Macro
-/*!
-  It's amount of bits used by fixed_t types. The available values for this macro are:
-    - FIXED_SIZE_8_BIT
-    - FIXED_SIZE_16_BIT
-    - FIXED_SIZE_32_BIT
-*/
-#define FIXED_SIZE_32_BIT
-
-//! Macro: Amount of Fractionary fixed_t Bits Macro
-/*!
-  It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
-*/
-#define AMOUNT_OF_FRACTIONARY_BITS                                  21
+#include <stdint.h>
+#include <stdarg.h>
+#include <math.h>
+#include "./Configs.h"
 
 //! Macro: fixed_t Macros
 /*!
   This macros are for facilitate the use of this library.
 */
-#if defined(FIXED_SIZE_8_BIT)
-    #define fixed_t                                                 int8_t
-    #define fixed_buffer_t                                          int16_t
-    #define FIXED_MAX_VALUE                                         INT8_MAX
-    #define FIXED_MIN_VALUE                                         INT8_MIN
-#elif defined(FIXED_SIZE_16_BIT)
-    #define fixed_t                                                 int16_t
-    #define fixed_buffer_t                                          int32_t
-    #define FIXED_MAX_VALUE                                         INT16_MAX
-    #define FIXED_MIN_VALUE                                         INT16_MIN
-#elif defined(FIXED_SIZE_32_BIT)
-    #define fixed_t                                                 int32_t
-    #define fixed_buffer_t                                          int64_t
-    #define FIXED_MAX_VALUE                                         INT32_MAX
-    #define FIXED_MIN_VALUE                                         INT32_MIN
+#if defined(__FIXED_SIZE_8_BIT__)
+    typedef int8_t fixed_t;
+    typedef int16_t __FIXED_BUFFER_T__;
+    #define __FIXED_MAX_VALUE__                                     INT8_MAX
+    #define __FIXED_MIN_VALUE__                                     INT8_MIN
+#elif defined(__FIXED_SIZE_16_BIT__)
+    typedef int16_t fixed_t;
+    typedef int32_t __FIXED_BUFFER_T__;
+    #define __FIXED_MAX_VALUE__                                     INT16_MAX
+    #define __FIXED_MIN_VALUE__                                     INT16_MIN
+#elif defined(__FIXED_SIZE_32_BIT__)
+    typedef int32_t fixed_t;
+    typedef int64_t __FIXED_BUFFER_T__;
+    #define __FIXED_MAX_VALUE__                                     INT32_MAX
+    #define __FIXED_MIN_VALUE__                                     INT32_MIN
 #endif
-
 
 //! Macro: fixed_t Type Abrangency
 /*!
   These macros are for facilitate the use of this library.
 */
-#define uiGetFixedMinimumNumber()                                   -(1 << ((((uint8_t) sizeof(fixed_t)) << 3) - AMOUNT_OF_FRACTIONARY_BITS - 1))
-#define fGetFixedResolution()                                       pow(2, -(AMOUNT_OF_FRACTIONARY_BITS - 1))
-#define fGetFixedMaximumNumber()                                    (-uiGetFixedMinimumNumber() - fGetFixedResolution())
+#define Fixed_getMinimumValue()                                     -((uint32_t) 1 << ((((uint8_t) sizeof(fixed_t)) << 3) - __AMOUNT_OF_FRACTIONARY_BITS__ - 1))
+#define Fixed_getResolution()                                       pow(2, -(__AMOUNT_OF_FRACTIONARY_BITS__ - 1))
+#define Fixed_getMaximumValue()                                     (-Fixed_getMinimumValue() - Fixed_getResolution())
+
+//! Macro: fixed_t Type Constructor
+/*!
+  These macros are for facilitate the use of this library.
+*/
+#define newFixed(fNumber)                                           ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
 
 //! Macro: fixed_t Type Convertions
 /*!
   These macros are for facilitate the use of this library.
 */
-#define fxFloatToFixed(fNumber)                                     ((fixed_t) ((fNumber) * (float)(1 << (AMOUNT_OF_FRACTIONARY_BITS))))
-#define fFixedToFloat(fxNumber)                                     ((float) ((fxNumber) / (float) (1 << (AMOUNT_OF_FRACTIONARY_BITS))))
-#define uiFixedToInt(fxNumber)                                      ((fxNumber) >> AMOUNT_OF_FRACTIONARY_BITS)
+#define Fixed_toFixed(fNumber)                                      newFixed(fNumber)
+#define Fixed_toFloat(fxNumber)                                     ((float) ((fxNumber) / (float) ((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
+#define Fixed_toInt(fxNumber)                                       ((fxNumber) >> __AMOUNT_OF_FRACTIONARY_BITS__)
 
 //! Macro: Auto iAmountOfNumbers Calculator
 /*!
   These macros are for facilitate the use of this library.
 */
-#define fxFixedAdd(...)                                             fxFixedAdd(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
-#define fxFixedMultiply(...)                                        fxFixedMultiply(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
-#define fxFixedDivide(...)                                          fxFixedDivide(sizeof((int []) {__VA_ARGS__}) / sizeof(int), __VA_ARGS__)
+#define Fixed_sum(...)                                              Fixed_sum(sizeof((int32_t []) {__VA_ARGS__}) / sizeof(int32_t), __VA_ARGS__)
+#define Fixed_multiply(...)                                         Fixed_multiply(sizeof((int32_t []) {__VA_ARGS__}) / sizeof(int32_t), __VA_ARGS__)
+#define Fixed_divide(...)                                           Fixed_divide(sizeof((int32_t []) {__VA_ARGS__}) / sizeof(int32_t), __VA_ARGS__)
 
-fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...);                    /*!< fixed_t type function. */
-fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...);               /*!< fixed_t type function. */
-fixed_t (fxFixedDivide)(int iAmountOfNumbers, ...);                 /*!< fixed_t type function. */
+fixed_t (Fixed_sum)(long int iAmountOfNumbers, ...);                /*!< fixed_t type function. */
+fixed_t (Fixed_multiply)(long int iAmountOfNumbers, ...);           /*!< fixed_t type function. */
+fixed_t (Fixed_divide)(long int iAmountOfNumbers, ...);             /*!< fixed_t type function. */
 
 #ifdef __cplusplus
   }

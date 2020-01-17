@@ -33,20 +33,27 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef __EMBEDDED_TOOLS_HEADER__
-#define __EMBEDDED_TOOLS_HEADER__
+#ifndef __EMBEDDED_TOOLS_CONFIGS_HEADER__
+#define __EMBEDDED_TOOLS_CONFIGS_HEADER__
 
 #ifdef __cplusplus
   extern "C" {
 #endif
 
+//! FixedPoint: Amount of fixed_t Bits Macro
 /*!
-  EmbeddedTools system libraries.
+  It's amount of bits used by fixed_t types. The available values for this macro are:
+    - __FIXED_SIZE_8_BIT__
+    - __FIXED_SIZE_16_BIT__
+    - __FIXED_SIZE_32_BIT__
 */
-#include "Bitwise.h"
-#include "SoftMath.h"
-#include "FixedPoint.h"
-#include "BitVector.h"
+#define __FIXED_SIZE_32_BIT__
+
+//! FixedPoint: Amount of Fractionary fixed_t Bits Macro
+/*!
+  It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
+*/
+#define __AMOUNT_OF_FRACTIONARY_BITS__                              11
 
 #ifdef __cplusplus
   }

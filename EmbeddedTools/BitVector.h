@@ -1,4 +1,4 @@
-//! EmbeddedTools Version 1.0b
+//! EmbeddedTools Version 2.0b
 /*!
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
@@ -33,31 +33,11 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef BitVector_H
-#define BitVector_H
+#ifndef __BIT_VECTOR_HEADER__
+#define __BIT_VECTOR_HEADER__
 
-#include <inttypes.h>
-
-//! Macro: Static Bit Vector Allocation
-/*!
-  This macro is for calculate the iNumber of cell of bit-vectors type.
-*/
-#define       uiBitVectorSize(uiNumberOfBits)                                                                   ((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits) >> 3) + 1)
-
-//! Macros: Bit Vector Position Calculus
-/*!
-  These macros are for calculate the uiPosition of cell of bit-vectors type and the bit uiPosition of iNumber of cell.
-*/
-#define       uiBitPosition(uiPosition)                                                                         ((uiBitVectorSize(uiPosition)) - (1))
-#define       uiBytePosition(uiPosition)                                                                        ((uiPosition) & (7))
-
-//! Macros: Bit Vector Manipulation
-/*!
-  These macros are for calculate the iNumber of cell of bit-vectors type.
-*/
-#define       vSetBitVector(bvBitVector, uiPosition)                                                            vSetBit(bvBitVector[(uiBitPosition(uiPosition))], (uiBytePosition(uiPosition)))
-#define       vEraseBitVector(bvBitVector, uiPosition)                                                          vEraseBit(bvBitVector[(uiBitPosition(uiPosition))], (uiBytePosition(uiPosition)))
-#define       ui8ReadBitVector(bvBitVector, uiPosition)                                                         ui8ReadBit(bvBitVector[(uiBitPosition(uiPosition))], (uiBytePosition(uiPosition)))
+#include <stdint.h>
+#include "./Bitwise.h"
 
 //! Type Definition: bitvector_t
 /*!
@@ -65,6 +45,31 @@
 */
 typedef uint8_t bitvector_t;
 
-#define       xCreateBitVector(bvName, uiSize)                                                                  bitvector_t bvName[uiBitVectorSize(uiSize)]
+//! Macro: Static Bit Vector Allocation
+/*!
+  This macro is for calculate the iNumber of cell of bit-vectors type.
+*/
+#define       BitVector_getSize(uiNumberOfBits)                                 ((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits) >> 3) + 1)
+
+//! Macros: Bit Vector Position Calculus
+/*!
+  These macros are for calculate the uiPosition of cell of bit-vectors type and the bit uiPosition of iNumber of cell.
+*/
+#define       BitVector_getBitPosition(uiPosition)                              ((BitVector_getSize(uiPosition)) - (1))
+#define       BitVector_getBytePosition(uiPosition)                             ((uiPosition) & (7))
+
+//! Macros: Bit Vector Manipulation
+/*!
+  These macros are for calculate the iNumber of cell of bit-vectors type.
+*/
+#define       BitVector_setBit(bvBitVector, uiPosition)                         Bitwise_setBit(bvBitVector[(BitVector_getBitPosition(uiPosition))], (BitVector_getBytePosition(uiPosition)))
+#define       BitVector_clearBit(bvBitVector, uiPosition)                       Bitwise_eraseBit(bvBitVector[(BitVector_getBitPosition(uiPosition))], (BitVector_getBytePosition(uiPosition)))
+#define       BitVector_readBit(bvBitVector, uiPosition)                        Bitwise_readBit(bvBitVector[(BitVector_getBitPosition(uiPosition))], (BitVector_getBytePosition(uiPosition)))
+
+//! Macros: Bit Vector Creation
+/*!
+  This macro creates a bit vectors.
+*/
+#define       newBitVector(bvName, uiSize)                                      bitvector_t bvName[BitVector_getSize(uiSize)]
 
 #endif

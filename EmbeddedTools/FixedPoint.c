@@ -4,7 +4,7 @@
 /*!
   This macro is for facilitate the use of this library.
 */
-#define uiRoundingFactor                                            (1UL << (AMOUNT_OF_FRACTIONARY_BITS - 1))
+#define ROUNDING_FACTOR                                             (1UL << (__AMOUNT_OF_FRACTIONARY_BITS__ - 1))
 
 //! Function: fixed_t Adder
 /*!
@@ -13,20 +13,20 @@
   \param ... is a fixed_t type numbers. It's the numbers that will be summed.
   \return Returns operation result.
 */
-fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...){
+fixed_t (Fixed_sum)(long int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
-  fixed_buffer_t fxbSum = 0;
+  __FIXED_BUFFER_T__ fxbSum = 0;
   fixed_t fxResult = 0;
   while (iAmountOfNumbers--){
-    fxbSum += va_arg(vaMyArguments, int);
+    fxbSum += va_arg(vaMyArguments, long int);
   }
   va_end(vaMyArguments);
-  if (fxbSum >= FIXED_MAX_VALUE){
-    return FIXED_MAX_VALUE;
+  if (fxbSum >= __FIXED_MAX_VALUE__){
+    return __FIXED_MAX_VALUE__;
   }
-  else if (fxbSum <= FIXED_MIN_VALUE){
-    return FIXED_MIN_VALUE;
+  else if (fxbSum <= __FIXED_MIN_VALUE__){
+    return __FIXED_MIN_VALUE__;
   }
   fxResult = (fixed_t) fxbSum;
   return fxResult;
@@ -39,25 +39,25 @@ fixed_t (fxFixedAdd)(int iAmountOfNumbers, ...){
   \param ... is a fixed_t type numbers. It's the numbers that will be multiplied.
   \return Returns operation result.
 */
-fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...){
+fixed_t (Fixed_multiply)(long int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
-  fixed_buffer_t fxbMultiply = 0;
+  __FIXED_BUFFER_T__ fxbMultiply = 0;
   fixed_t fxResult = 0;
   while (iAmountOfNumbers--){
     if (fxbMultiply == 0){
-        fxbMultiply = va_arg(vaMyArguments, int);
+        fxbMultiply = va_arg(vaMyArguments, long int);
     }
     else{
-        fxbMultiply = (((fxbMultiply * va_arg(vaMyArguments, int)) + uiRoundingFactor) >> AMOUNT_OF_FRACTIONARY_BITS);
+        fxbMultiply = (((fxbMultiply * va_arg(vaMyArguments, long int)) + ROUNDING_FACTOR) >> __AMOUNT_OF_FRACTIONARY_BITS__);
     }
   }
   va_end(vaMyArguments);
-  if (fxbMultiply >= FIXED_MAX_VALUE){
-    return FIXED_MAX_VALUE;
+  if (fxbMultiply >= __FIXED_MAX_VALUE__){
+    return __FIXED_MAX_VALUE__;
   }
-  else if (fxbMultiply <= FIXED_MIN_VALUE){
-    return FIXED_MIN_VALUE;
+  else if (fxbMultiply <= __FIXED_MIN_VALUE__){
+    return __FIXED_MIN_VALUE__;
   }
   fxResult = (fixed_t) fxbMultiply;
   return fxResult;
@@ -70,35 +70,35 @@ fixed_t (fxFixedMultiply)(int iAmountOfNumbers, ...){
   \param ... is a fixed_t type numbers. It's the numbers that will be divided.
   \return Returns operation result.
 */
-fixed_t (fxFixedDivide)(int iAmountOfNumbers, ...){
+fixed_t (Fixed_divide)(long int iAmountOfNumbers, ...){
   va_list vaMyArguments;
   va_start(vaMyArguments, iAmountOfNumbers);
-  fixed_buffer_t fxbDivisor = 0;
-  fixed_buffer_t fxbDividend = 0;
+  __FIXED_BUFFER_T__ fxbDivisor = 0;
+  __FIXED_BUFFER_T__ fxbDividend = 0;
   fixed_t fxResult = 0;
   while (iAmountOfNumbers--){
     if (fxbDivisor == 0){
-        fxbDivisor = va_arg(vaMyArguments, int);
+        fxbDivisor = va_arg(vaMyArguments, long int);
     }
     else{
-        fxbDividend = va_arg(vaMyArguments, int);
+        fxbDividend = va_arg(vaMyArguments, long int);
         if (fxbDividend == 0){
             if (fxbDivisor > 0){
-                return FIXED_MAX_VALUE;
+                return __FIXED_MAX_VALUE__;
             }
             else{
-                return FIXED_MIN_VALUE;
+                return __FIXED_MIN_VALUE__;
             }
         }
-        fxbDivisor = ((fxbDivisor << AMOUNT_OF_FRACTIONARY_BITS) + (fxbDividend >> 1)) / fxbDividend;
+        fxbDivisor = ((fxbDivisor << __AMOUNT_OF_FRACTIONARY_BITS__) + (fxbDividend >> 1)) / fxbDividend;
     }
   }
   va_end(vaMyArguments);
-  if (fxbDivisor >= FIXED_MAX_VALUE){
-    return FIXED_MAX_VALUE;
+  if (fxbDivisor >= __FIXED_MAX_VALUE__){
+    return __FIXED_MAX_VALUE__;
   }
-  else if (fxbDivisor <= FIXED_MIN_VALUE){
-    return FIXED_MIN_VALUE;
+  else if (fxbDivisor <= __FIXED_MIN_VALUE__){
+    return __FIXED_MIN_VALUE__;
   }
   fxResult = (fixed_t) fxbDivisor;
   return fxResult;

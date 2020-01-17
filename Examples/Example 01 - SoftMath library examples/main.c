@@ -1,6 +1,6 @@
-//! Example 01 - Assembly math examples
+//! Example 01 - SoftMath library examples
 /*!
-  This simply example demonstrates the use of bit manipulation.
+  This simply example demonstrates the use of SoftMath library.
 
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
@@ -42,48 +42,48 @@ int main(){
   /*!
     Declaring variables...
   */
-  int32_t i32NumberA = 32;
-  int32_t i32NumberB = 18;
-  int32_t i32SumNumber = i32NumberA + i32NumberB;
+  int16_t i16NumberA = 32;
+  int16_t i16NumberB = 18;
+  int16_t i16SumNumber = i16NumberA + i16NumberB;
 
   /*!
     Printing the bigger variable...
   */
-  printf("Bigger variable: %d\n", iBigger(i32NumberA, i32NumberB));
+  printf("Bigger variable: %d\n", SoftMath_bigger(i16NumberA, i16NumberB));
 
   /*!
     Printing the smaller variable...
   */
-  printf("Smaller variable: %d\n", iSmaller(i32NumberA, i32NumberB));
+  printf("Smaller variable: %d\n", SoftMath_smaller(i16NumberA, i16NumberB));
 
   /*!
     Printing the sum of variables...
   */
-  printf("Sum: %d\n", i32SumNumber);
+  printf("Sum: %d\n", i16SumNumber);
 
   /*!
     Printing the double of sum of variables...
   */
-  printf("Double of sum: %d\n", uiDouble(i32SumNumber));
+  printf("Double of sum: %d\n", SoftMath_double(i16SumNumber));
 
   /*!
     Printing the half of sum of variables...
   */
-  printf("Half of sum: %d\n", uiHalf(i32SumNumber));
+  printf("Half of sum: %d\n", SoftMath_half(i16SumNumber));
 
   /*!
     Multiplying the sum of the variables by 16 (2^4)...
   */
-  printf("Sum time 16: %d\n", uiMultiply(i32SumNumber, 4));
+  printf("Sum time 16: %d\n", SoftMath_multiply(i16SumNumber, 4));
 
   /*!
     Dividing the sum of the variables by 8 (2^3)...
   */
-  printf("Integer part of sum divided by 8: %d\n", uiDivide(i32SumNumber, 3));
+  printf("Integer part of sum divided by 8: %d\n", SoftMath_divide(i16SumNumber, 3));
 
   /*!
     Rest of division of the sum of the variables by 8 (2^3)...
   */
-  printf("Rest of division of sum divided by 8: %d\n", uiRestOfDivision(i32SumNumber, 3));
+  printf("Division rest of sum divided by 8: %d\n", SoftMath_divisionRest(i16SumNumber, 3));
   return 0;
 }

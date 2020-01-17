@@ -1,4 +1,4 @@
-//! EmbeddedTools Version 1.0b
+//! EmbeddedTools Version 2.0b
 /*!
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
@@ -33,8 +33,8 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef AssemblyMath_H
-#define AssemblyMath_H
+#ifndef __SOFT_MATH_H__
+#define __SOFT_MATH_H__
 
 //! Macro: Negative
 /*!
@@ -42,7 +42,7 @@
   \param iNumber is an undefined parameter. It's the number that will be denied.
   \return "Returns" the negative parameter.
 */
-#define     iNegative(iNumber)                            (iNumber) > 0 ? ~(iNumber) + 1 : (iNumber)
+#define     SoftMath_negative(iNumber)                            (iNumber) > 0 ? ~(iNumber) + 1 : (iNumber)
 
 //! Macro: Module
 /*!
@@ -50,7 +50,7 @@
   \param iNumber is an undefined parameter. It's the number that will have its calculated module.
   \return "Returns" the parameter module.
 */
-#define     uiModule(iNumber)                             (iNumber) < 0 ? ~(iNumber) + 1 : (iNumber)
+#define     SoftMath_module(iNumber)                              (iNumber) < 0 ? ~(iNumber) + 1 : (iNumber)
 
 //! Macro: Double
 /*!
@@ -58,7 +58,7 @@
   \param iNumber is an undefined parameter. It's the number that will have your double calculated.
   \return "Returns" twice the parameter.
 */
-#define     uiDouble(iNumber)                             ((uiModule(iNumber)) << 1)
+#define     SoftMath_double(iNumber)                              ((SoftMath_module(iNumber)) << 1)
 
 //! Macro: Half
 /*!
@@ -66,7 +66,7 @@
   \param iNumber is an undefined parameter. It's the number that will have your half calculated.
   \return "Returns" to half of the parameter.
 */
-#define     uiHalf(iNumber)                               iNumber >= 0 ? ((iNumber) >> 1) : - ((uiModule(iNumber)) >> 1)
+#define     SoftMath_half(iNumber)                                iNumber >= 0 ? ((iNumber) >> 1) : - ((SoftMath_module(iNumber)) >> 1)
 
 //! Macro: Multiplication
 /*!
@@ -75,7 +75,7 @@
   \param uiExpoentOfTwo is an undefined parameter. It's the multiplier: this parameter must be "n" for 2^n, n >= 0.
   \return "Returns" the result of multiplication.
 */
-#define     uiMultiply(iNumber, uiExpoentOfTwo)           iNumber >= 0 ? ((iNumber) << (uiExpoentOfTwo)) : -((ui8Module(iNumber)) << (uiExpoentOfTwo))
+#define     SoftMath_multiply(iNumber, uiExpoentOfTwo)            iNumber >= 0 ? ((iNumber) << (uiExpoentOfTwo)) : -((SoftMath_module(iNumber)) << (uiExpoentOfTwo))
 
 //! Macro: Division
 /*!
@@ -84,7 +84,7 @@
   \param uiExpoentOfTwo is an undefined parameter. It's the divisor of division: this parameter must be "n" for 2^n, n >= 0.
   \return "Returns" the rest of the division of the parameter.
 */
-#define     uiDivide(iNumber, uiExpoentOfTwo)             iNumber >= 0 ? ((iNumber) >> (uiExpoentOfTwo)) : -((ui8Module(iNumber)) >> (uiExpoentOfTwo))
+#define     SoftMath_divide(iNumber, uiExpoentOfTwo)              iNumber >= 0 ? ((iNumber) >> (uiExpoentOfTwo)) : -((SoftMath_module(iNumber)) >> (uiExpoentOfTwo))
 
 //! Macro: Rest of Division
 /*!
@@ -93,7 +93,7 @@
   \param uiExpoentOfTwo is an undefined parameter. It's the divisor of division: this parameter must be "n" for 2^n, n >= 0.
   \return "Returns" the rest of the division of the parameter.
 */
-#define     uiRestOfDivision(iNumber, uiExpoentOfTwo)     iNumber >= 0 ? ((iNumber) & (((1 << (uiExpoentOfTwo)) - 1))) : -((ui8Module(iNumber)) & (((1 << (uiExpoentOfTwo)) - 1))) 
+#define     SoftMath_divisionRest(iNumber, uiExpoentOfTwo)        iNumber >= 0 ? ((iNumber) & (((1 << (uiExpoentOfTwo)) - 1))) : -((SoftMath_module(iNumber)) & (((1 << (uiExpoentOfTwo)) - 1))) 
 
 //! Macro: Larger
 /*!
@@ -102,7 +102,7 @@
   \param iNumberB is an undefined parameter. It's the number that will be compared for the larger check.
   \return "Returns" the largest parameter.
 */
-#define     iBigger(iNumberA, iNumberB)                   (iNumberA) >= (iNumberB) ? (iNumberA) : (iNumberB)
+#define     SoftMath_bigger(iNumberA, iNumberB)                   (iNumberA) >= (iNumberB) ? (iNumberA) : (iNumberB)
 
 //! Macro: Minor
 /*!
@@ -111,6 +111,6 @@
   \param iNumberB is an undefined parameter. It's the number that will be compared for the verification of the child.
   \return "Returns" the smallest parameter.
 */
-#define     iSmaller(iNumberA, iNumberB)                  (iNumberA) <= (iNumberB) ? (iNumberA) : (iNumberB)
+#define     SoftMath_smaller(iNumberA, iNumberB)                  (iNumberA) <= (iNumberB) ? (iNumberA) : (iNumberB)
 
 #endif

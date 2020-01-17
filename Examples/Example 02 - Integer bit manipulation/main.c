@@ -43,38 +43,38 @@
 */
 char cProcessCounter = 'A';
 
-void vPrintBits(uint32_t ui32Number);                 /*!< Void type function. */
+void printBits(uint32_t ui32Number);                  /*!< Void type function. */
 
 int main(){
   /*!
     A) Declaring a simple 32-bit variable...
   */
   uint32_t ui32Number = 7;
-  vPrintBits(ui32Number);
+  printBits(ui32Number);
 
   /*!
     B) Erasing bit from position 0 (least significant)...
   */
-  vEraseBit(ui32Number, 0);
-  vPrintBits(ui32Number);
+  Bitwise_clearBit(ui32Number, 0);
+  printBits(ui32Number);
 
   /*!
     C) Seting byte from position 1...
   */
-  vSetByte(ui32Number, 1);
-  vPrintBits(ui32Number);
+  Bitwise_setByte(ui32Number, 1);
+  printBits(ui32Number);
 
   /*!
     D) Copying the first byte of number 0xFFFF and pasting in the last position...
   */
-  vCopyByte(ui32Number, 3, 0xFFFF, 0);
-  vPrintBits(ui32Number);
+  Bitwise_copyByte(ui32Number, 3, 0xFFFF, 0);
+  printBits(ui32Number);
 
   /*!
     E) Copying 3 bits at position 0 of number 4 and pasting them into position 10...
   */
-  vCopyBits(ui32Number, 10, 4, 0, 3)
-  vPrintBits(ui32Number);
+  Bitwise_copyBits(ui32Number, 10, 4, 0, 3);
+  printBits(ui32Number);
   return 0;
 }
 
@@ -83,11 +83,11 @@ int main(){
   Print all bits of a 32-bits integer.
   \param ui32Number is a 32-bits integer.
 */
-void vPrintBits(uint32_t ui32Number){
+void printBits(uint32_t ui32Number){
   int8_t i8Counter = 32;
   printf("%c) ", cProcessCounter);
   for (i8Counter = 31 ; i8Counter > -1 ; i8Counter--){
-    printf("%d", ui8ReadBit(ui32Number, i8Counter));
+    printf("%d", Bitwise_readBit(ui32Number, i8Counter));
   }
   printf("\n");
   cProcessCounter++;
