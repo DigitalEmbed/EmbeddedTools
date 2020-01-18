@@ -43,17 +43,17 @@
 //! FixedPoint: Amount of fixed_t Bits Macro
 /*!
   It's amount of bits used by fixed_t types. The available values for this macro are:
-    - __FIXED_SIZE_8_BIT__
-    - __FIXED_SIZE_16_BIT__
-    - __FIXED_SIZE_32_BIT__
+    - __SOFT_DECIMAL_SIZE_8_BIT__
+    - __SOFT_DECIMAL_SIZE_16_BIT__
+    - __SOFT_DECIMAL_SIZE_32_BIT__
 */
-#define __FIXED_SIZE_32_BIT__
+#define __SOFT_DECIMAL_SIZE_16_BIT__
 
 //! FixedPoint: Amount of Fractionary fixed_t Bits Macro
 /*!
   It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
 */
-#define __AMOUNT_OF_FRACTIONARY_BITS__                              11
+#define __AMOUNT_OF_FRACTIONARY_BITS__                             7
 
 #ifdef __cplusplus
   }
