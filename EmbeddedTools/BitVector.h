@@ -49,7 +49,7 @@ typedef uint8_t bitvector_t;
 /*!
   This macro is for calculate the iNumber of cell of bit-vectors type.
 */
-#define       BitVector_getSize(uiNumberOfBits)                                 ((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits) >> 3) + 1)
+#define       BitVector_getSize(uiNumberOfBits)                                 ((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits - 1) >> 3) + 1)
 
 //! Macros: Bit Vector Position Calculus
 /*!
@@ -63,13 +63,13 @@ typedef uint8_t bitvector_t;
   These macros are for calculate the iNumber of cell of bit-vectors type.
 */
 #define       BitVector_setBit(bvBitVector, uiPosition)                         Bitwise_setBit(bvBitVector[(BitVector_getBitPosition(uiPosition))], (BitVector_getBytePosition(uiPosition)))
-#define       BitVector_clearBit(bvBitVector, uiPosition)                       Bitwise_eraseBit(bvBitVector[(BitVector_getBitPosition(uiPosition))], (BitVector_getBytePosition(uiPosition)))
+#define       BitVector_clearBit(bvBitVector, uiPosition)                       Bitwise_clearBit(bvBitVector[(BitVector_getBitPosition(uiPosition))], (BitVector_getBytePosition(uiPosition)))
 #define       BitVector_readBit(bvBitVector, uiPosition)                        Bitwise_readBit(bvBitVector[(BitVector_getBitPosition(uiPosition))], (BitVector_getBytePosition(uiPosition)))
 
 //! Macros: Bit Vector Creation
 /*!
   This macro creates a bit vectors.
 */
-#define       newBitVector(bvName, uiSize)                                      bitvector_t bvName[BitVector_getSize(uiSize)]
+#define       newBitVector(bvName, uiSize)                                      bitvector_t bvName[BitVector_getSize(uiSize)] = {0}
 
 #endif
