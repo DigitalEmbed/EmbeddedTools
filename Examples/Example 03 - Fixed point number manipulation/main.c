@@ -1,6 +1,6 @@
 //! Example 03 - Fixed point number manipulation
 /*!
-  This simply example demonstrates the use of bit manipulation.
+  This simply example demonstrates the use of fixed_t type number manipulation.
 
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
