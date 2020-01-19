@@ -4,13 +4,21 @@
 
 During my career as a embedded systems programmer, I developed some interesting tools. These tools are resources for creation of other libraries, aiming at the optimization of mathematical calculations and automation of some milindrosos processes and with high error rates, like the manipulation of bits in a variable.
 
-### Bits
+### Bitwise
 
 With this library it is possible to manipulate bits in the contents of a variable.
 
-### AssemblyMath
+### BitVector
+
+The bool type is extremely inefficient because it contains 8 bits but uses only 1, that is, we have a waste of 87.5% of the memory allocated to this type. The purpose of this library is to increase the efficiency of this type, trying to use all the bits present in a byte for binary variables.
+
+### SoftMath
 
 It is always costly for the processor to perform multiplication, division, or remainder division operations. This library was created to optimize these operations. You can also calculate the magnitude of a number, reverse its signal, or compare two numbers to see which one is the largest or smallest.
+
+### SoftDecimal
+
+It is always costly for the processor to perform operations that involve decimal numbers (floating points). This library was created aiming at the optimization of operations involving these numbers.
 
 ### License
 
@@ -67,13 +75,21 @@ This system was developed by **Jorge Henrique Moreira Santana**:
 
 Durante minha carreira de programador de sistemas embarcados, desenvolvi algumas ferramentas interessantes. Estas ferramentas são recursos para criação de outras bibliotecas, visando a otimização de calculos matemáticos e automação de alguns processos milindrosos e com altas taxas de erros, como a manipulação de bits em uma variável.
 
-### Bits
+### Bitwise
 
 Com essa biblioteca é possível desde a manipulação de bits no conteúdo de uma variável.
 
-### AssemblyMath
+### BitVector
+
+O tipo bool é extremamente ineficiente por conter 8 bits mas usar apenas 1, ou seja, temos um desperdício de 87.5% da memória alocada para este tipo. O propósito desta biblioteca é aumentar a eficiência deste tipo, procurando usar todos os bits presentes em um byte para variáveis binárias.
+
+### SoftMath
 
 É sempre custoso para o processador executar operações de multiplicação, divisão ou resto de divisão. Esta biblioteca foi criada visando a otimização dessas operações. É possível também calcular o módulo de um número, inverter seu sinal ou comparar dois números para verificar qual deles é o maior ou menor.
+
+### SoftDecimal
+
+É sempre custoso para o processador executar operações que envolvem números decimais (pontos flutuantes). Esta biblioteca foi criada visando a otimização de operações envolvendo esses números.
 
 ### Licença
 
