@@ -363,7 +363,7 @@ bool SoftDecimal_error(void){
 }
 
 #else
-  #error "Invalid __AMOUNT_OF_FRACTIONARY_BITS__ value!"
+  #error Invalid __AMOUNT_OF_FRACTIONARY_BITS__ value!
 #endif
 
 #endif
