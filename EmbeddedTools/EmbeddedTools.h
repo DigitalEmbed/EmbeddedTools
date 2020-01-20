@@ -34,22 +34,22 @@
 */
 
 #ifndef __EMBEDDED_TOOLS_HEADER__
-#define __EMBEDDED_TOOLS_HEADER__
+  #define __EMBEDDED_TOOLS_HEADER__
 
-#ifdef __cplusplus
-  extern "C" {
-#endif
+  #ifdef __cplusplus
+    extern "C" {
+  #endif
 
-/*!
-  EmbeddedTools system libraries.
-*/
-#include "Bitwise.h"
-#include "SoftMath.h"
-#include "FixedPoint.h"
-#include "BitVector.h"
+  /*!
+    EmbeddedTools system libraries.
+  */
+  #include "Bitwise.h"
+  #include "SoftMath.h"
+  #include "FixedPoint.h"
+  #include "BitVector.h"
 
-#ifdef __cplusplus
-  }
-#endif
+  #ifdef __cplusplus
+    }
+  #endif
 
 #endif
