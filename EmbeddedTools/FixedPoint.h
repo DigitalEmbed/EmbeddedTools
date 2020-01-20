@@ -72,7 +72,7 @@
     typedef int64_t __SOFT_DECIMAL_BUFFER_T__;
     #define __SOFT_DECIMAL_MAX_VALUE__                                     	INT32_MAX
     #define __SOFT_DECIMAL_MIN_VALUE__                                     	INT32_MIN
-    #define __AUTO_SIZE_LIST_TYPE__                                         fixed_t 
+    #define __AUTO_SIZE_LIST_TYPE__                                         fixed_t
 #endif
 
 extern float fMinimumValue;
