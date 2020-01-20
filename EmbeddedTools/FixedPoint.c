@@ -1,16 +1,19 @@
 #include "FixedPoint.h"
 
-#if (defined(__AMOUNT_OF_FRACTIONARY_BITS__)\
-    &&((defined(__SOFT_DECIMAL_SIZE_8_BIT__))\
-    ||defined(__SOFT_DECIMAL_SIZE_16_BIT__)\
-    ||defined(__SOFT_DECIMAL_SIZE_32_BIT__)))
+#if (!defined(__AMOUNT_OF_FRACTIONARY_BITS__)\
+    ||((!defined(__SOFT_DECIMAL_SIZE_8_BIT__))\
+    &&(!defined(__SOFT_DECIMAL_SIZE_16_BIT__))\
+    &&(!defined(__SOFT_DECIMAL_SIZE_32_BIT__))))
+  #pragma message("Buffer manager disabled!")
 
-#if ((__AMOUNT_OF_FRACTIONARY_BITS__ <= 0))\
-    ||((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ >= 8))\
-    ||(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ >= 16))\
-    ||(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ >= 32)))
-  #error "Invalid __AMOUNT_OF_FRACTIONARY_BITS__ value!"
-#endif
+#else
+
+#if ((__AMOUNT_OF_FRACTIONARY_BITS__ > 0)\
+    &&((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 8))\
+    ||(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 16))\
+    ||(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 32))))
+
+#define __SOFT_DECIMAL_PASS__
 
 #include <math.h>
 
@@ -361,5 +364,9 @@ bool SoftDecimal_error(void){
   }
   return false;
 }
+
+#else
+  #error "Invalid __AMOUNT_OF_FRACTIONARY_BITS__ value!"
+#endif
 
 #endif
