@@ -5,7 +5,6 @@
     &&(!defined(__SOFT_DECIMAL_SIZE_16_BIT__))\
     &&(!defined(__SOFT_DECIMAL_SIZE_32_BIT__))))
   #pragma message("Buffer manager disabled!")
-
 #else
 
 #if ((__AMOUNT_OF_FRACTIONARY_BITS__ > 0)\
