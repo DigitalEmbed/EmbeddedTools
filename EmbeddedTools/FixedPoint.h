@@ -38,10 +38,17 @@
 
 #include "./Configs.h"
 
-#if (defined(__AMOUNT_OF_FRACTIONARY_BITS__) && (__AMOUNT_OF_FRACTIONARY_BITS__ > 0))\
-    &&((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 8))\
-    ||(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 16))\
-    ||(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 32)))
+#if (defined(__AMOUNT_OF_FRACTIONARY_BITS__)\
+    &&((defined(__SOFT_DECIMAL_SIZE_8_BIT__))\
+    ||defined(__SOFT_DECIMAL_SIZE_16_BIT__)\
+    ||defined(__SOFT_DECIMAL_SIZE_32_BIT__)))
+
+#if ((__AMOUNT_OF_FRACTIONARY_BITS__ <= 0))\
+    ||((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ >= 8))\
+    ||(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ >= 16))\
+    ||(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ >= 32)))
+  #error "Invalid __AMOUNT_OF_FRACTIONARY_BITS__ value!"
+#endif
 
 #ifdef __cplusplus
   extern "C" {
@@ -123,5 +130,8 @@ bool SoftDecimal_error(void);                                               /*!<
   }
 #endif
 
+#else
+  #warning "FixedPoint disabled!"
 #endif
+
 #endif
