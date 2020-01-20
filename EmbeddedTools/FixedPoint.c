@@ -12,8 +12,6 @@
     ||(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 16))\
     ||(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 32))))
 
-#define __SOFT_DECIMAL_PASS__
-
 #include <math.h>
 
 //! Macro: Rounding Factor Calculator
