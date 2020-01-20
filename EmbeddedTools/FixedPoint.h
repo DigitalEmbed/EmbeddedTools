@@ -65,9 +65,9 @@
 #if defined(__SOFT_DECIMAL_SIZE_8_BIT__)
     typedef int8_t fixed_t;
     typedef int16_t __SOFT_DECIMAL_BUFFER_T__;
-    #define __SOFT_DECIMAL_MAX_VALUE__                                    	INT8_MAX
-    #define __SOFT_DECIMAL_MIN_VALUE__                                     	INT8_MIN
-    #define __AUTO_SIZE_LIST_TYPE__                                     	  int16_t
+    #define __SOFT_DECIMAL_MAX_VALUE__																			INT8_MAX
+    #define __SOFT_DECIMAL_MIN_VALUE__																			INT8_MIN
+    #define __AUTO_SIZE_LIST_TYPE__																					int16_t
 #elif defined(__SOFT_DECIMAL_SIZE_16_BIT__)
     typedef int16_t fixed_t;
     typedef int32_t __SOFT_DECIMAL_BUFFER_T__;
