@@ -49,7 +49,7 @@
   /*!
     This macro is for calculate the iNumber of cell of bit-vectors type.
   */
-  #define       BitVector_getSize(uiNumberOfBits)                                 ((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits - 1) >> 3) + 1)
+  #define       BitVector_getSize(uiNumberOfBits)                                 (((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits - 1) >> 3) + 1))
 
   //! Macros: Bit Vector Position Calculus
   /*!
