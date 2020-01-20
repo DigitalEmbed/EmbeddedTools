@@ -40,8 +40,8 @@
     extern "C" {
   #endif
 
-  #define __ENABLE_FIXED_POINT__
-  #if defined(__ENABLE_FIXED_POINT__)
+  #define __ENABLE_FIXED_POINT_MANAGER__
+  #if defined(__ENABLE_FIXED_POINT_MANAGER__)
     //! FixedPoint: Amount of fixed_t Bits Macro
     /*!
       It's amount of bits used by fixed_t types. The available values for this macro are:
