@@ -4,7 +4,7 @@
     ||((!defined(__SOFT_DECIMAL_SIZE_8_BIT__))\
     &&(!defined(__SOFT_DECIMAL_SIZE_16_BIT__))\
     &&(!defined(__SOFT_DECIMAL_SIZE_32_BIT__))))
-  #pragma message "Buffer manager disabled!"
+  #pragma message "Fixed point manager disabled!"
 #else
 
   #if ((__AMOUNT_OF_FRACTIONARY_BITS__ > 0)\
@@ -359,6 +359,13 @@
 
     #else
 
+      //! Function: fixed_t Adder
+      /*!
+        Summs fixed_t type numbers.
+        \param fxAddendA is a fixed_t number.
+        \param fxAddendB is a fixed_t number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_fixedSum(fixed_t fxAddendA, fixed_t fxAddendB){
         __SOFT_DECIMAL_BUFFER_T__ fxbSum = fxAddendA + fxAddendB;
         if (fxbSum >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -372,6 +379,13 @@
         return (fixed_t) fxbSum;
       }
 
+      //! Function: float Adder
+      /*!
+        Summs float type numbers.
+        \param fAddendA is a float number.
+        \param fAddendB is a float number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_floatSum(float fAddendA, float fAddendB){
         __SOFT_DECIMAL_BUFFER_T__ fxbSum = SoftDecimal_toFixed(fAddendA) + SoftDecimal_toFixed(fAddendB);
         if (fxbSum >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -385,6 +399,13 @@
         return (fixed_t) fxbSum;
       }
 
+      //! Function: fixed_t Subtracter
+      /*!
+        Subtracts fixed_t type numbers.
+        \param fxMinuendo is a fixed_t number.
+        \param fxSubtrahend is a fixed_t number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_fixedSubtract(fixed_t fxMinuendo, fixed_t fxSubtrahend){
         __SOFT_DECIMAL_BUFFER_T__ fxbSubtraction = fxMinuendo - fxSubtrahend;
         if (fxbSubtraction >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -398,6 +419,13 @@
         return (fixed_t) fxbSubtraction;
       }
 
+      //! Function: float Subtracter
+      /*!
+        Subtracts float type numbers.
+        \param fMinuendo is a float number.
+        \param fSubtrahend is a float number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_floatSubtract(float fMinuendo, float fSubtrahend){
         __SOFT_DECIMAL_BUFFER_T__ fxbSubtraction = SoftDecimal_toFixed(fMinuendo) - SoftDecimal_toFixed(fSubtrahend);
         if (fxbSubtraction >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -411,6 +439,13 @@
         return (fixed_t) fxbSubtraction;
       }
 
+      //! Function: fixed_t Multiplier
+      /*!
+        Multiplies fixed_t type numbers.
+        \param fxMultiplier is a fixed_t number.
+        \param fxMultiplicand is a fixed_t number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_fixedMultiply(fixed_t fxMultiplier, fixed_t fxMultiplicand){
         __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((fxMultiplier * fxMultiplicand) + ROUNDING_FACTOR) >> __AMOUNT_OF_FRACTIONARY_BITS__);
         if (fxbMultiply >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -424,6 +459,13 @@
         return (fixed_t) fxbMultiply;
       }
 
+      //! Function: float Multiplier
+      /*!
+        Multiplies float type numbers.
+        \param fMultiplier is a float number.
+        \param fMultiplicand is a float number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_floatMultiply(float fMultiplier, float fMultiplicand){
         __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((SoftDecimal_toFixed(fMultiplier) * SoftDecimal_toFixed(fMultiplicand)) + ROUNDING_FACTOR) >> __AMOUNT_OF_FRACTIONARY_BITS__);
         if (fxbMultiply >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -437,6 +479,13 @@
         return (fixed_t) fxbMultiply;
       }
 
+      //! Function: fixed_t Divider
+      /*!
+        Divides fixed_t type numbers.
+        \param fxDivisor is a fixed_t number.
+        \param fxDividend is a fixed_t number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_fixedDivide(fixed_t fxDivisor, fixed_t fxDividend){
         if (fxDividend == 0){
           bReachedLimitFlag = true;
@@ -459,6 +508,13 @@
         return (fixed_t) fxbQuotient;
       }
 
+      //! Function: float Divider
+      /*!
+        Divides float type numbers.
+        \param fDivisor is a float number.
+        \param fDividend is a float number.
+        \return Returns operation result.
+      */
       fixed_t SoftDecimal_floatDivide(float fDividend, float fDivisor){
         if (fDividend == 0.0){
           bReachedLimitFlag = true;

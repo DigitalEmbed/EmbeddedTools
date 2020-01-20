@@ -40,27 +40,29 @@
   extern "C" {
 #endif
 
-//! FixedPoint: Amount of fixed_t Bits Macro
-/*!
-  It's amount of bits used by fixed_t types. The available values for this macro are:
-    - __SOFT_DECIMAL_SIZE_8_BIT__
-    - __SOFT_DECIMAL_SIZE_16_BIT__
-    - __SOFT_DECIMAL_SIZE_32_BIT__
-*/
-#define __SOFT_DECIMAL_SIZE_16_BIT__
+#define __ENABLE_FIXED_POINT__
+#if defined(__ENABLE_FIXED_POINT__)
+  //! FixedPoint: Amount of fixed_t Bits Macro
+  /*!
+    It's amount of bits used by fixed_t types. The available values for this macro are:
+      - __SOFT_DECIMAL_SIZE_8_BIT__
+      - __SOFT_DECIMAL_SIZE_16_BIT__
+      - __SOFT_DECIMAL_SIZE_32_BIT__
+  */
+  #define __SOFT_DECIMAL_SIZE_16_BIT__
 
-//! FixedPoint: Amount of Fractionary fixed_t Bits Macro
-/*!
-  It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
-*/
-#define __AMOUNT_OF_FRACTIONARY_BITS__                             11
+  //! FixedPoint: Amount of Fractionary fixed_t Bits Macro
+  /*!
+    It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
+  */
+  #define __AMOUNT_OF_FRACTIONARY_BITS__                             11
 
-//! FixedPoint: Use Infinite Arguments
-/*!
-  Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM. In projects with MISRA rules, this option must be disabled.
-*/
-#define __FIXED_POINT_USE_INFINITE_ARGUMENTS__
-
+  //! FixedPoint: Use Infinite Arguments
+  /*!
+    Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM. In projects with MISRA rules, this option must be disabled.
+  */
+  #define __FIXED_POINT_USE_INFINITE_ARGUMENTS__
+#endif
 
 #ifdef __cplusplus
   }
