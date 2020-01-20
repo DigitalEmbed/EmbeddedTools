@@ -71,9 +71,9 @@
 #elif defined(__SOFT_DECIMAL_SIZE_16_BIT__)
     typedef int16_t fixed_t;
     typedef int32_t __SOFT_DECIMAL_BUFFER_T__;
-    #define __SOFT_DECIMAL_MAX_VALUE__                                     	INT16_MAX
-    #define __SOFT_DECIMAL_MIN_VALUE__                                     	INT16_MIN
-    #define __AUTO_SIZE_LIST_TYPE__                                         fixed_t
+    #define __SOFT_DECIMAL_MAX_VALUE__																			INT16_MAX
+    #define __SOFT_DECIMAL_MIN_VALUE__																			INT16_MIN
+    #define __AUTO_SIZE_LIST_TYPE__																					fixed_t
 #elif defined(__SOFT_DECIMAL_SIZE_32_BIT__)
     typedef int32_t fixed_t;
     typedef int64_t __SOFT_DECIMAL_BUFFER_T__;
