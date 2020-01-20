@@ -79,14 +79,30 @@ int main(){
 
   /*!
     G) Other way to subtracting (or summing with a negative number)...
+    Notes:
+      - Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM.
+      - In projects with MISRA rules, this option must be disabled.
   */
-  fxNumberB = SoftDecimal_fixedSum(fxNumberA, -(fxNumberB), SoftDecimal_toFixed(-1.5));
+  #if defined(__FIXED_POINT_USE_INFINITE_ARGUMENTS__)
+    fxNumberB = SoftDecimal_fixedSum(fxNumberA, -(fxNumberB), SoftDecimal_toFixed(-1.5));
+  #else
+    fxNumberB = SoftDecimal_fixedSum(fxNumberA, -(fxNumberB));
+    fxNumberB = SoftDecimal_fixedSum(fxNumberB, SoftDecimal_toFixed(-1.5));
+  #endif
   printf("Fixed point number B subtracted by number A and 1.5: %f\n\n", (double) SoftDecimal_toFloat(fxNumberB));
 
   /*!
     H) Multiplying...
+    Notes:
+      - Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM.
+      - In projects with MISRA rules, this option must be disabled.
   */
-  fxNumberA = SoftDecimal_floatMultiply(SoftDecimal_toFloat(fxNumberA), 2.0, 3.5);
+  #if defined(__FIXED_POINT_USE_INFINITE_ARGUMENTS__)
+    fxNumberA = SoftDecimal_floatMultiply(SoftDecimal_toFloat(fxNumberA), 2.0, 3.5);
+  #else
+    fxNumberA = SoftDecimal_floatMultiply(SoftDecimal_toFloat(fxNumberA), 2.0);
+    fxNumberA = SoftDecimal_floatMultiply(SoftDecimal_toFloat(fxNumberA), 3.5);
+  #endif
   printf("Fixed point number A multiplied by 2 and 3.5: %f\n\n", (double) SoftDecimal_toFloat(fxNumberA));
 
   /*!
