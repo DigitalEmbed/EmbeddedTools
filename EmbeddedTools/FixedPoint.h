@@ -36,6 +36,13 @@
 #ifndef __SOFT_DECIMAL_HEADER__
 #define __SOFT_DECIMAL_HEADER__
 
+#include "./Configs.h"
+
+#if (defined(__AMOUNT_OF_FRACTIONARY_BITS__) && (__AMOUNT_OF_FRACTIONARY_BITS__ > 0))\
+    &&((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 8))\
+    ||(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 16))\
+    ||(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 32)))
+
 #ifdef __cplusplus
   extern "C" {
 #endif
@@ -43,8 +50,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdarg.h>
-#include <math.h>
-#include "./Configs.h"
 
 //! Macro: fixed_t Macros
 /*!
@@ -118,4 +123,5 @@ bool SoftDecimal_error(void);                                               /*!<
   }
 #endif
 
+#endif
 #endif
