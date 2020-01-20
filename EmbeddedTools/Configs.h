@@ -53,7 +53,14 @@
 /*!
   It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
 */
-#define __AMOUNT_OF_FRACTIONARY_BITS__                             7
+#define __AMOUNT_OF_FRACTIONARY_BITS__                             11
+
+//! FixedPoint: Use Infinite Arguments
+/*!
+  Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM. In projects with MISRA rules, this option must be disabled.
+*/
+#define __FIXED_POINT_USE_INFINITE_ARGUMENTS__
+
 
 #ifdef __cplusplus
   }
