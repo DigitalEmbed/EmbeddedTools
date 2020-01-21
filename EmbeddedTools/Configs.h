@@ -39,7 +39,11 @@
   #ifdef __cplusplus
     extern "C" {
   #endif
-
+  
+  //! Configuration: FixedPoint Manager
+  /*!
+    Enable or disable the FixedPoint system manager here.
+  */
   #define __ENABLE_FIXED_POINT_MANAGER__
   #if defined(__ENABLE_FIXED_POINT_MANAGER__)
     //! FixedPoint: Amount of fixed_t Bits Macro
