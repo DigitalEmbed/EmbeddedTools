@@ -1,16 +1,13 @@
 #include "FixedPoint.h"
 
-#if (!defined(__AMOUNT_OF_FRACTIONARY_BITS__)\
-    ||((!defined(__SOFT_DECIMAL_SIZE_8_BIT__))\
-    &&(!defined(__SOFT_DECIMAL_SIZE_16_BIT__))\
-    &&(!defined(__SOFT_DECIMAL_SIZE_32_BIT__))))
+#if !defined(__ENABLE_FIXED_POINT_MANAGER__)
   #pragma message "Fixed point manager disabled!"
 #else
 
-  #if ((__AMOUNT_OF_FRACTIONARY_BITS__ > 0)\
-      &&((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 8))\
-      ||(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 16))\
-      ||(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 32))))
+  #if ((defined(__AMOUNT_OF_FRACTIONARY_BITS__) && (__AMOUNT_OF_FRACTIONARY_BITS__ > 0))&&\
+  ((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 8))||\
+  (defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 16))||\
+  (defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 32))))
 
     #include <math.h>
 
@@ -18,7 +15,7 @@
     /*!
       This macro is for facilitate the use of this library.
     */
-    #define ROUNDING_FACTOR                                                     ((uint32_t)1 << (__AMOUNT_OF_FRACTIONARY_BITS__ - 1))
+    #define __ROUNDING_FACTOR__                                                 ((uint32_t)1 << (__AMOUNT_OF_FRACTIONARY_BITS__ - 1))
 
     //! Macro: fixed_t Type Abrangency
     /*!
@@ -225,7 +222,7 @@
             fxbMultiply = va_arg(vaMyArguments, int);
           }
           else{
-            fxbMultiply = (((fxbMultiply * va_arg(vaMyArguments, int)) + ROUNDING_FACTOR) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+            fxbMultiply = (((fxbMultiply * va_arg(vaMyArguments, int)) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
           }
         }
         va_end(vaMyArguments);
@@ -256,7 +253,7 @@
             fxbMultiply = SoftDecimal_toFixed(va_arg(vaMyArguments, double));
           }
           else{
-            fxbMultiply = (((fxbMultiply * SoftDecimal_toFixed(va_arg(vaMyArguments, double))) + ROUNDING_FACTOR) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+            fxbMultiply = (((fxbMultiply * SoftDecimal_toFixed(va_arg(vaMyArguments, double))) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
           }
         }
         va_end(vaMyArguments);
@@ -447,7 +444,7 @@
         \return Returns operation result.
       */
       fixed_t SoftDecimal_fixedMultiply(fixed_t fxMultiplier, fixed_t fxMultiplicand){
-        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((fxMultiplier * fxMultiplicand) + ROUNDING_FACTOR) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((fxMultiplier * fxMultiplicand) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
         if (fxbMultiply >= __SOFT_DECIMAL_MAX_VALUE__){
           bReachedLimitFlag = true;
           return __SOFT_DECIMAL_MAX_VALUE__;
@@ -467,7 +464,7 @@
         \return Returns operation result.
       */
       fixed_t SoftDecimal_floatMultiply(float fMultiplier, float fMultiplicand){
-        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((SoftDecimal_toFixed(fMultiplier) * SoftDecimal_toFixed(fMultiplicand)) + ROUNDING_FACTOR) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((SoftDecimal_toFixed(fMultiplier) * SoftDecimal_toFixed(fMultiplicand)) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
         if (fxbMultiply >= __SOFT_DECIMAL_MAX_VALUE__){
           bReachedLimitFlag = true;
           return __SOFT_DECIMAL_MAX_VALUE__;
