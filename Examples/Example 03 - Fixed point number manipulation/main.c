@@ -50,8 +50,8 @@ int main(){
   /*!
     B) Declaring a fixed point type variables...
   */
-  fixed_t fxNumberA = newSoftDecimal(3.14);
-  fixed_t fxNumberB = newSoftDecimal(2.0);
+  newSoftDecimal(fxNumberA, 3.14);
+  newSoftDecimal(fxNumberB, 2.0);
 
   /*!
     C) Printing a fixed point type variable...
@@ -132,3 +132,4 @@ int main(){
   }
   return 0;
 }
+

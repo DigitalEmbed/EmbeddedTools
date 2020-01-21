@@ -43,10 +43,9 @@
   /*!
     EmbeddedTools system libraries.
   */
-  #include "Bitwise.h"
-  #include "SoftMath.h"
-  #include "FixedPoint.h"
-  #include "BitVector.h"
+  #include "./Bitwise.h"
+  #include "./SoftMath.h"
+  #include "./FixedPoint.h"
 
   #ifdef __cplusplus
     }

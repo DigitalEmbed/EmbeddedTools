@@ -58,36 +58,58 @@
     #if defined(__SOFT_DECIMAL_SIZE_8_BIT__)
       typedef int8_t fixed_t;
       typedef int16_t __SOFT_DECIMAL_BUFFER_T__;
-      #define __SOFT_DECIMAL_MAX_VALUE__                                                        INT8_MAX
-      #define __SOFT_DECIMAL_MIN_VALUE__                                                        INT8_MIN
-      #define __AUTO_SIZE_LIST_TYPE__                                                           int16_t
+      #define __SOFT_DECIMAL_MAX_VALUE__                      INT8_MAX
+      #define __SOFT_DECIMAL_MIN_VALUE__                      INT8_MIN
+      #define __AUTO_SIZE_LIST_TYPE__                         int16_t
     #elif defined(__SOFT_DECIMAL_SIZE_16_BIT__)
       typedef int16_t fixed_t;
       typedef int32_t __SOFT_DECIMAL_BUFFER_T__;
-      #define __SOFT_DECIMAL_MAX_VALUE__                                                        INT16_MAX
-      #define __SOFT_DECIMAL_MIN_VALUE__                                                        INT16_MIN
-      #define __AUTO_SIZE_LIST_TYPE__                                                           fixed_t
+      #define __SOFT_DECIMAL_MAX_VALUE__                      INT16_MAX
+      #define __SOFT_DECIMAL_MIN_VALUE__                      INT16_MIN
+      #define __AUTO_SIZE_LIST_TYPE__                         fixed_t
     #elif defined(__SOFT_DECIMAL_SIZE_32_BIT__)
       typedef int32_t fixed_t;
       typedef int64_t __SOFT_DECIMAL_BUFFER_T__;
-      #define __SOFT_DECIMAL_MAX_VALUE__                                                        INT32_MAX
-      #define __SOFT_DECIMAL_MIN_VALUE__                                                        INT32_MIN
-      #define __AUTO_SIZE_LIST_TYPE__                                                           fixed_t
+      #define __SOFT_DECIMAL_MAX_VALUE__                      INT32_MAX
+      #define __SOFT_DECIMAL_MIN_VALUE__                      INT32_MIN
+      #define __AUTO_SIZE_LIST_TYPE__                         fixed_t
     #endif
 
     //! Macro: fixed_t Type Constructor
     /*!
-      These macros are for facilitate the use of this library.
+      Creates a fixed_t number.
+      \param fxNumberName is a name of variable.
+      \param fNumber is a float number.
     */
-    #define newSoftDecimal(fNumber)                                                             ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
+    #define newSoftDecimal(fxNumberName, fNumber)\
+      fixed_t (fxNumberName) = ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
 
-    //! Macro: fixed_t Type Convertions
+    //! Macro: Float to Fixed Converter
     /*!
-      These macros are for facilitate the use of this library.
+      Converts a float number to fixed_t type.
+      \param fNumber is a float number.
+      \return Returns the fixed_t number.
     */
-    #define SoftDecimal_toFixed(fNumber)                                                        newSoftDecimal(fNumber)
-    #define SoftDecimal_toFloat(fxNumber)                                                       ((float) ((fxNumber) / (float) ((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
-    #define SoftDecimal_toInt(fxNumber)                                                         ((fxNumber) >> __AMOUNT_OF_FRACTIONARY_BITS__)
+    #define SoftDecimal_toFixed(fNumber)\
+      ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
+    
+    //! Macro: Fixed to Float Converter
+    /*!
+      Converts a fixed_t number to float type.
+      \param fxNumber is a fixed_t number.
+      \return Returns the fixed_t number.
+    */
+    #define SoftDecimal_toFloat(fxNumber)\
+      ((float) ((fxNumber) / (float) ((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
+    
+    //! Macro: Fixed to Integer Converter
+    /*!
+      Converts a fixed_t number to int type.
+      \param fxNumber is a fixed_t number.
+      \return Returns the integer number.
+    */
+    #define SoftDecimal_toInt(fxNumber)\
+      ((fxNumber) >> __AMOUNT_OF_FRACTIONARY_BITS__)
 
     #if defined (__FIXED_POINT_USE_INFINITE_ARGUMENTS__)
 
