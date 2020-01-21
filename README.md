@@ -8,10 +8,6 @@ During my career as a embedded systems programmer, I developed some interesting 
 
 With this library it is possible to manipulate bits in the contents of a variable.
 
-### BitVector
-
-The bool type is extremely inefficient because it contains 8 bits but uses only 1, that is, we have a waste of 87.5% of the memory allocated to this type. The purpose of this library is to increase the efficiency of this type, trying to use all the bits present in a byte for binary variables.
-
 ### SoftMath
 
 It is always costly for the processor to perform multiplication, division, or remainder division operations. This library was created to optimize these operations. You can also calculate the magnitude of a number, reverse its signal, or compare two numbers to see which one is the largest or smallest.
@@ -78,10 +74,6 @@ Durante minha carreira de programador de sistemas embarcados, desenvolvi algumas
 ### Bitwise
 
 Com essa biblioteca é possível desde a manipulação de bits no conteúdo de uma variável.
-
-### BitVector
-
-O tipo bool é extremamente ineficiente por conter 8 bits mas usar apenas 1, ou seja, temos um desperdício de 87.5% da memória alocada para este tipo. O propósito desta biblioteca é aumentar a eficiência deste tipo, procurando usar todos os bits presentes em um byte para variáveis binárias.
 
 ### SoftMath
 

@@ -33,22 +33,36 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef __EMBEDDED_TOOLS_HEADER__
-  #define __EMBEDDED_TOOLS_HEADER__
+#include "./Configs.h"
 
-  #ifdef __cplusplus
-    extern "C" {
-  #endif
+//! System Message: Bitwise Status
+/*!
+  Please don't modify this.
+*/
+#if !defined(__ENABLE_BITWISE_MANAGER__)
+  #pragma message "Bitwise operations manager disabled!"
+#endif
 
-  /*!
-    EmbeddedTools system libraries.
-  */
-  #include "./Bitwise.h"
-  #include "./SoftMath.h"
-  #include "./SoftDecimal.h"
+//! System Message: SoftMath Status
+/*!
+  Please don't modify this.
+*/
+#if !defined(__ENABLE_SOFT_MATH_MANAGER__)
+  #pragma message "Soft math manager disabled!"
+#endif
 
-  #ifdef __cplusplus
-    }
-  #endif
+//! System Message: SoftDecimal Status
+/*!
+  Please don't modify this.
+*/
+#if !defined(__ENABLE_SOFT_DECIMAL_MANAGER__)
+  #pragma message "Fixed point manager disabled!"
+#endif
 
+//! System Message: SoftDecimal Infinite Arguments
+/*!
+  Please don't modify this.
+*/
+#if defined (__SOFT_DECIMAL_ENABLE_INFINITE_ARGUMENTS__)
+  #warning FixedPoint uses stdarg.h library! You shoud be very cautious with your RAM. In projects with MISRA rules, this option should be disabled.
 #endif

@@ -40,12 +40,30 @@
     extern "C" {
   #endif
   
+  //! Configuration: Bitwise Manager
+  /*!
+    Enable Bitwise system manager here. The available values for this macro are:
+      - __ENABLE_BITWISE_MANAGER__
+      - __DISABLE_BITWISE_MANAGER__
+  */
+  #define __ENABLE_BITWISE_MANAGER__
+  
+  //! Configuration: SoftMath Manager
+  /*!
+    Enable SoftMath system manager here. The available values for this macro are:
+      - __ENABLE_SOFT_MATH_MANAGER__
+      - __DISABLE_SOFT_MATH_MANAGER__
+  */
+  #define __ENABLE_SOFT_MATH_MANAGER__
+
   //! Configuration: FixedPoint Manager
   /*!
-    Configure FixedPoint system manager here.
+    Configure FixedPoint system manager here. The available values for this macro are:
+      - __ENABLE_SOFT_DECIMAL_MANAGER__
+      - __DISABLE_SOFT_DECIMAL_MANAGER__
   */
-  #define __ENABLE_FIXED_POINT_MANAGER__
-  #if defined(__ENABLE_FIXED_POINT_MANAGER__)
+  #define __ENABLE_SOFT_DECIMAL_MANAGER__
+  #if defined(__ENABLE_SOFT_DECIMAL_MANAGER__)
     //! FixedPoint: Amount of fixed_t Bits Macro
     /*!
       It's amount of bits used by fixed_t types. The available values for this macro are:
@@ -59,13 +77,16 @@
     /*!
       It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
     */
-    #define __AMOUNT_OF_FRACTIONARY_BITS__                             11
+    #define __AMOUNT_OF_FRACTIONARY_BITS__                             6
 
     //! FixedPoint: Use Infinite Arguments
     /*!
       Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM. In projects with MISRA rules, this option must be disabled.
+      The available values for this macro are:
+        - __SOFT_DECIMAL_ENABLE_INFINITE_ARGUMENTS__
+        - __SOFT_DECIMAL_DISABLE_INFINITE_ARGUMENTS__
     */
-    #define __FIXED_POINT_USE_INFINITE_ARGUMENTS__
+    #define __SOFT_DECIMAL_DISABLE_INFINITE_ARGUMENTS__
   #endif
 
   #ifdef __cplusplus

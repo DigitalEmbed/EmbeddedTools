@@ -83,7 +83,7 @@ int main(){
       - Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM.
       - In projects with MISRA rules, this option must be disabled.
   */
-  #if defined(__FIXED_POINT_USE_INFINITE_ARGUMENTS__)
+  #if defined(__FIXED_POINT_ENABLE_INFINITE_ARGUMENTS__)
     fxNumberB = SoftDecimal_fixedSum(fxNumberA, -(fxNumberB), SoftDecimal_toFixed(-1.5));
   #else
     fxNumberB = SoftDecimal_fixedSum(fxNumberA, -(fxNumberB));
@@ -97,7 +97,7 @@ int main(){
       - Infinite arguments (stdarg.h) makes your program more elegant, but you should be cautious with your RAM.
       - In projects with MISRA rules, this option must be disabled.
   */
-  #if defined(__FIXED_POINT_USE_INFINITE_ARGUMENTS__)
+  #if defined(__FIXED_POINT_ENABLE_INFINITE_ARGUMENTS__)
     fxNumberA = SoftDecimal_floatMultiply(SoftDecimal_toFloat(fxNumberA), 2.0, 3.5);
   #else
     fxNumberA = SoftDecimal_floatMultiply(SoftDecimal_toFloat(fxNumberA), 2.0);
@@ -127,7 +127,7 @@ int main(){
     L) Checking if the calculations were performed safely ...
   */
   if (SoftDecimal_error() == true){
-    printf("\nWarning! A limit has been reached! Probably, the calculations are wrongs!");
+    printf("\nWarning! A limit has been reached! Probably, the calculations are wrongs!\n");
     return -1;
   }
   return 0;
