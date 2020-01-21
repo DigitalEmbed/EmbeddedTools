@@ -42,7 +42,7 @@
   
   //! Configuration: FixedPoint Manager
   /*!
-    Enable or disable the FixedPoint system manager here.
+    Enable or disable FixedPoint system manager here.
   */
   #define __ENABLE_FIXED_POINT_MANAGER__
   #if defined(__ENABLE_FIXED_POINT_MANAGER__)
