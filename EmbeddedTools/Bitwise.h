@@ -38,8 +38,12 @@
 
   #include "./Configs.h"
 
-  #if defined(__ENABLE_BITWISE_MANAGER__)
+  #if defined(__BITWISE_MANAGER_ENABLE__)
   
+    #ifdef __cplusplus
+      extern "C" {
+    #endif
+
     //! Macro: Set a Bit
     /*!
       Set a bit of a number.
@@ -168,6 +172,10 @@
     #define Bitwise_copyByte(uiDestiny, uiDestinyBytePosition, uiNumber, uiNumberBytePosition)\
       Bitwise_clearByte((uiDestiny), (uiDestinyBytePosition));\
       (uiDestiny) |= (((uiNumber >> ((uiNumberBytePosition) << 3)) & 255) << (((uiDestinyBytePosition) << 3)))
+
+    #ifdef __cplusplus
+      }
+    #endif
 
   #endif
 #endif

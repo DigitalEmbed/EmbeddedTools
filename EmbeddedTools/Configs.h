@@ -42,28 +42,30 @@
   
   //! Configuration: Bitwise Manager
   /*!
-    Enable Bitwise system manager here. The available values for this macro are:
-      - __ENABLE_BITWISE_MANAGER__
-      - __DISABLE_BITWISE_MANAGER__
+    Enable system bitwise manager here. The available values for this macro are:
+      - __BITWISE_MANAGER_ENABLE__
+      - __BITWISE_MANAGER_DISABLE__
   */
-  #define __ENABLE_BITWISE_MANAGER__
+  #define __BITWISE_MANAGER_ENABLE__
   
   //! Configuration: SoftMath Manager
   /*!
-    Enable SoftMath system manager here. The available values for this macro are:
-      - __ENABLE_SOFT_MATH_MANAGER__
-      - __DISABLE_SOFT_MATH_MANAGER__
+    Enable system soft math manager here. The available values for this macro are:
+      - __SOFT_MATH_MANAGER_ENABLE__
+      - __SOFT_MATH_MANAGER_DISABLE__
   */
-  #define __ENABLE_SOFT_MATH_MANAGER__
+  #define __SOFT_MATH_MANAGER_ENABLE__
 
   //! Configuration: FixedPoint Manager
   /*!
-    Configure FixedPoint system manager here. The available values for this macro are:
-      - __ENABLE_SOFT_DECIMAL_MANAGER__
-      - __DISABLE_SOFT_DECIMAL_MANAGER__
+    Configure system soft decimal manager here. The available values for this macro are:
+      - __SOFT_DECIMAL_MANAGER_ENABLE__
+      - __SOFT_DECIMAL_MANAGER_DISABLE__
   */
-  #define __ENABLE_SOFT_DECIMAL_MANAGER__
-  #if defined(__ENABLE_SOFT_DECIMAL_MANAGER__)
+  #define __SOFT_DECIMAL_MANAGER_ENABLE__
+  
+  #if defined(__SOFT_DECIMAL_MANAGER_ENABLE__)
+
     //! FixedPoint: Amount of fixed_t Bits Macro
     /*!
       It's amount of bits used by fixed_t types. The available values for this macro are:
@@ -77,7 +79,7 @@
     /*!
       It's amount of fractionary bits used by fixed_t types. Don't forget: this value must be smaller than amount of bits used by fixed_t types!
     */
-    #define __AMOUNT_OF_FRACTIONARY_BITS__                             6
+    #define __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ 6
 
     //! FixedPoint: Use Infinite Arguments
     /*!
@@ -87,6 +89,7 @@
         - __SOFT_DECIMAL_DISABLE_INFINITE_ARGUMENTS__
     */
     #define __SOFT_DECIMAL_DISABLE_INFINITE_ARGUMENTS__
+    
   #endif
 
   #ifdef __cplusplus

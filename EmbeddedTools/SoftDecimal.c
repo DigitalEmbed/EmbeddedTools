@@ -1,11 +1,11 @@
 #include "./Configs.h"
 
-#if defined(__ENABLE_SOFT_DECIMAL_MANAGER__)
+#if defined(__SOFT_DECIMAL_MANAGER_ENABLE__)
 
-  #if ((defined(__ENABLE_SOFT_DECIMAL_MANAGER__) && (__AMOUNT_OF_FRACTIONARY_BITS__ > 0))&&\
-  ((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 8))||\
-  (defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 16))||\
-  (defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__AMOUNT_OF_FRACTIONARY_BITS__ < 32))))
+  #if ((defined(__SOFT_DECIMAL_MANAGER_ENABLE__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ > 0))&&\
+  ((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ < 8))||\
+  (defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ < 16))||\
+  (defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ < 32))))
 
     #include "./SoftDecimal.h"
     #include <math.h>
@@ -14,14 +14,14 @@
     /*!
       This macro is for facilitate the use of this library.
     */
-    #define __ROUNDING_FACTOR__                                                 ((uint32_t)1 << (__AMOUNT_OF_FRACTIONARY_BITS__ - 1))
+    #define __ROUNDING_FACTOR__                                                 ((uint32_t)1 << (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1))
 
     //! Macro: fixed_t Type Abrangency
     /*!
       These macros are for facilitate the use of this library.
     */
-    #define __SOFT_DECIMAL_MINIMUM_VALUE__                                      (-((int32_t)1 << ((sizeof(fixed_t) << 3) - __AMOUNT_OF_FRACTIONARY_BITS__ - 1)))
-    #define __SOFT_DECIMAL_RESOLUTION__                                         (pow(2, (-(__AMOUNT_OF_FRACTIONARY_BITS__ - 1))))
+    #define __SOFT_DECIMAL_MINIMUM_VALUE__                                      (-((int32_t)1 << ((sizeof(fixed_t) << 3) - __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1)))
+    #define __SOFT_DECIMAL_RESOLUTION__                                         (pow(2, (-(__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1))))
     #define __SOFT_DECIMAL_MAXIMUM_VALUE__                                      (-(__SOFT_DECIMAL_MINIMUM_VALUE__ + __SOFT_DECIMAL_RESOLUTION__))
 
     float fMinimumValue = -1.0;                                                 /*!< float type. */
@@ -220,7 +220,7 @@
             fxbMultiply = va_arg(vaMyArguments, int);
           }
           else{
-            fxbMultiply = (((fxbMultiply * va_arg(vaMyArguments, int)) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+            fxbMultiply = (((fxbMultiply * va_arg(vaMyArguments, int)) + __ROUNDING_FACTOR__) >> __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__);
           }
         }
         va_end(vaMyArguments);
@@ -251,7 +251,7 @@
             fxbMultiply = SoftDecimal_toFixed(va_arg(vaMyArguments, double));
           }
           else{
-            fxbMultiply = (((fxbMultiply * SoftDecimal_toFixed(va_arg(vaMyArguments, double))) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+            fxbMultiply = (((fxbMultiply * SoftDecimal_toFixed(va_arg(vaMyArguments, double))) + __ROUNDING_FACTOR__) >> __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__);
           }
         }
         va_end(vaMyArguments);
@@ -295,7 +295,7 @@
               return __SOFT_DECIMAL_MIN_VALUE__;
             }
           }
-          fxbDivisor = ((fxbDivisor << __AMOUNT_OF_FRACTIONARY_BITS__) + (fxbDividend >> 1)) / fxbDividend;
+          fxbDivisor = ((fxbDivisor << __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__) + (fxbDividend >> 1)) / fxbDividend;
         }
         va_end(vaMyArguments);
         if (fxbDivisor >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -338,7 +338,7 @@
               return __SOFT_DECIMAL_MIN_VALUE__;
             }
           }
-          fxbDivisor = ((fxbDivisor << __AMOUNT_OF_FRACTIONARY_BITS__) + (fxbDividend >> 1)) / fxbDividend;
+          fxbDivisor = ((fxbDivisor << __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__) + (fxbDividend >> 1)) / fxbDividend;
         }
         va_end(vaMyArguments);
         if (fxbDivisor >= __SOFT_DECIMAL_MAX_VALUE__){
@@ -442,7 +442,7 @@
         \return Returns operation result.
       */
       fixed_t SoftDecimal_fixedMultiply(fixed_t fxMultiplier, fixed_t fxMultiplicand){
-        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((fxMultiplier * fxMultiplicand) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((fxMultiplier * fxMultiplicand) + __ROUNDING_FACTOR__) >> __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__);
         if (fxbMultiply >= __SOFT_DECIMAL_MAX_VALUE__){
           bReachedLimitFlag = true;
           return __SOFT_DECIMAL_MAX_VALUE__;
@@ -462,7 +462,7 @@
         \return Returns operation result.
       */
       fixed_t SoftDecimal_floatMultiply(float fMultiplier, float fMultiplicand){
-        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((SoftDecimal_toFixed(fMultiplier) * SoftDecimal_toFixed(fMultiplicand)) + __ROUNDING_FACTOR__) >> __AMOUNT_OF_FRACTIONARY_BITS__);
+        __SOFT_DECIMAL_BUFFER_T__ fxbMultiply = (((SoftDecimal_toFixed(fMultiplier) * SoftDecimal_toFixed(fMultiplicand)) + __ROUNDING_FACTOR__) >> __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__);
         if (fxbMultiply >= __SOFT_DECIMAL_MAX_VALUE__){
           bReachedLimitFlag = true;
           return __SOFT_DECIMAL_MAX_VALUE__;
@@ -491,7 +491,7 @@
             return __SOFT_DECIMAL_MIN_VALUE__;
           }
         }
-        __SOFT_DECIMAL_BUFFER_T__ fxbQuotient = ((fxDivisor << __AMOUNT_OF_FRACTIONARY_BITS__) + (fxDividend >> 1)) / fxDividend;
+        __SOFT_DECIMAL_BUFFER_T__ fxbQuotient = ((fxDivisor << __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__) + (fxDividend >> 1)) / fxDividend;
         if (fxbQuotient >= __SOFT_DECIMAL_MAX_VALUE__){
           bReachedLimitFlag = true;
           return __SOFT_DECIMAL_MAX_VALUE__;
@@ -520,7 +520,7 @@
             return __SOFT_DECIMAL_MIN_VALUE__;
           }
         }
-        __SOFT_DECIMAL_BUFFER_T__ fxbQuotient = ((SoftDecimal_toFixed(fDivisor) << __AMOUNT_OF_FRACTIONARY_BITS__) + (SoftDecimal_toFixed(fDividend) >> 1)) / SoftDecimal_toFixed(fDividend);
+        __SOFT_DECIMAL_BUFFER_T__ fxbQuotient = ((SoftDecimal_toFixed(fDivisor) << __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__) + (SoftDecimal_toFixed(fDividend) >> 1)) / SoftDecimal_toFixed(fDividend);
         if (fxbQuotient >= __SOFT_DECIMAL_MAX_VALUE__){
           bReachedLimitFlag = true;
           return __SOFT_DECIMAL_MAX_VALUE__;
@@ -535,7 +535,7 @@
     #endif
 
   #else
-    #error Invalid __AMOUNT_OF_FRACTIONARY_BITS__ value!
+    #error Invalid __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ value!
   #endif
 
 #endif

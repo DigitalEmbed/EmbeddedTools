@@ -39,7 +39,7 @@
 /*!
   Please don't modify this.
 */
-#if !defined(__ENABLE_BITWISE_MANAGER__)
+#if !defined(__BITWISE_MANAGER_ENABLE__)
   #pragma message "Bitwise operations manager disabled!"
 #endif
 
@@ -47,7 +47,7 @@
 /*!
   Please don't modify this.
 */
-#if !defined(__ENABLE_SOFT_MATH_MANAGER__)
+#if !defined(__SOFT_MATH_MANAGER_ENABLE__)
   #pragma message "Soft math manager disabled!"
 #endif
 
@@ -55,7 +55,7 @@
 /*!
   Please don't modify this.
 */
-#if !defined(__ENABLE_SOFT_DECIMAL_MANAGER__)
+#if !defined(__SOFT_DECIMAL_MANAGER_ENABLE__)
   #pragma message "Fixed point manager disabled!"
 #endif
 

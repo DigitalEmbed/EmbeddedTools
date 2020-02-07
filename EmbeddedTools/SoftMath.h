@@ -33,12 +33,16 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef __SOFT_MATH_H__
-  #define __SOFT_MATH_H__
+#ifndef __SOFT_MATH_HEADER__
+  #define __SOFT_MATH_HEADER__
 
   #include "./Configs.h"
 
-  #if defined(__ENABLE_SOFT_MATH_MANAGER__)
+  #if defined(__SOFT_MATH_MANAGER_ENABLE__)
+
+    #ifdef __cplusplus
+      extern "C" {
+    #endif
 
     //! Macro: Negative
     /*!
@@ -143,6 +147,10 @@
       (((iNumberA) <= (iNumberB)) ?\
         (iNumberA) : \
         (iNumberB))
-  
+
+    #ifdef __cplusplus
+      }
+    #endif
+
   #endif
 #endif

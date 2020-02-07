@@ -38,7 +38,7 @@
 
   #include "./Configs.h"
 
-  #if defined(__ENABLE_SOFT_DECIMAL_MANAGER__)
+  #if defined(__SOFT_DECIMAL_MANAGER_ENABLE__)
 
     #ifdef __cplusplus
       extern "C" {
@@ -79,7 +79,7 @@
       \param fNumber is a float number.
     */
     #define newSoftDecimal(fxNumberName, fNumber)\
-      fixed_t (fxNumberName) = ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
+      fixed_t (fxNumberName) = ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__))))
 
     //! Macro: Float to Fixed Converter
     /*!
@@ -88,7 +88,7 @@
       \return Returns the fixed_t number.
     */
     #define SoftDecimal_toFixed(fNumber)\
-      ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
+      ((fixed_t) (((float) fNumber) * (float)((uint32_t) 1 << (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__))))
     
     //! Macro: Fixed to Float Converter
     /*!
@@ -97,7 +97,7 @@
       \return Returns the fixed_t number.
     */
     #define SoftDecimal_toFloat(fxNumber)\
-      ((float) ((fxNumber) / (float) ((uint32_t) 1 << (__AMOUNT_OF_FRACTIONARY_BITS__))))
+      ((float) ((fxNumber) / (float) ((uint32_t) 1 << (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__))))
     
     //! Macro: Fixed to Integer Converter
     /*!
@@ -106,7 +106,7 @@
       \return Returns the integer number.
     */
     #define SoftDecimal_toInt(fxNumber)\
-      ((fxNumber) >> __AMOUNT_OF_FRACTIONARY_BITS__)
+      ((fxNumber) >> __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__)
 
     #if defined (__SOFT_DECIMAL_ENABLE_INFINITE_ARGUMENTS__)
 
