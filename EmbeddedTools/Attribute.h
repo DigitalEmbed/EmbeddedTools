@@ -154,7 +154,7 @@
     /*!
       The alias attribute causes the declaration to be emitted as an alias for another symbol, which must be specified.
     */
-    #define ATTRIBUTE_ALIAS(xTarget) __attribute__((alias(#xTarget))
+    #define ATTRIBUTE_ALIAS(xTarget) __attribute__((alias(#xTarget)))
   
   #endif
 #endif
