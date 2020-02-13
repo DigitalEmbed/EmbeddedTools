@@ -46,6 +46,7 @@
   #include "./Bitwise.h"
   #include "./SoftMath.h"
   #include "./SoftDecimal.h"
+  #include "./Attribute.h"
 
   #ifdef __cplusplus
     }

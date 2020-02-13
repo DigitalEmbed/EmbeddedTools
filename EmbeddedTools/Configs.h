@@ -40,6 +40,22 @@
     extern "C" {
   #endif
   
+  //! Configuration: Attribute Macros
+  /*!
+    Enable system attribute macros here. The available values for this macro are:
+      - __ATTRIBUTE_MACROS_ENABLE__
+      - __ATTRIBUTE_MACROS_DISABLE__
+  */
+  #define __ATTRIBUTE_MACROS_ENABLE__
+  
+  //! Configuration: Attribute Macros
+  /*!
+    Enable priority for constructor and destructor attributes. . The available values for this macro are:
+      - __PRIORITY_CONSTRUCTOR_DESTRUCTOR_ENABLE__
+      - __PRIORITY_CONSTRUCTOR_DESTRUCTOR_DISABLE__
+  */
+  #define __PRIORITY_CONSTRUCTOR_DESTRUCTOR_DISABLE__
+
   //! Configuration: Bitwise Manager
   /*!
     Enable system bitwise manager here. The available values for this macro are:

@@ -35,6 +35,22 @@
 
 #include "./Configs.h"
 
+//! System Message: Attribute Macro Status
+/*!
+  Please don't modify this.
+*/
+#if !defined(__ATTRIBUTE_MACROS_ENABLE__)
+  #pragma message "Attribute macros disabled!"
+#endif
+
+//! System Message: Attribute Macro Status
+/*!
+  Please don't modify this.
+*/
+#if !defined(__PRIORITY_CONSTRUCTOR_DESTRUCTOR_ENABLE__) && defined(__ATTRIBUTE_MACROS_ENABLE__)
+  #pragma message "Constructor/distructor priority disabled!"
+#endif
+
 //! System Message: Bitwise Status
 /*!
   Please don't modify this.
