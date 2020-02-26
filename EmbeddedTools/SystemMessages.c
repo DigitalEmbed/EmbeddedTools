@@ -82,3 +82,14 @@
 #if defined (__SOFT_DECIMAL_ENABLE_INFINITE_ARGUMENTS__)
   #warning FixedPoint uses stdarg.h library! You shoud be very cautious with your RAM. In projects with MISRA rules, this option should be disabled.
 #endif
+
+//! System Message: SoftDecimal Errors
+/*!
+  Please don't modify this.
+*/
+#if (!((defined(__SOFT_DECIMAL_MANAGER_ENABLE__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ > 0))&&\
+((defined(__SOFT_DECIMAL_SIZE_8_BIT__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ < 8))||\
+(defined(__SOFT_DECIMAL_SIZE_16_BIT__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ < 16))||\
+(defined(__SOFT_DECIMAL_SIZE_32_BIT__) && (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ < 32)))))
+  #error Invalid __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ value!
+#endif
