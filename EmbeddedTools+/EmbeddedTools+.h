@@ -6,6 +6,7 @@
   Permissions of this copyleft license are conditioned on making available
   complete source code of licensed works and modifications under the same
   license or the GNU GPLv3. Copyright and license notices must be preserved.
+  
   Contributors provide an express grant of patent rights. However, a larger
   work using the licensed work through interfaces provided by the licensed
   work may be distributed under different terms and without source code for
@@ -33,21 +34,24 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef __EMBEDDED_TOOLS_HEADER__
-  #define __EMBEDDED_TOOLS_HEADER__
+#ifndef __EMBEDDED_TOOLS_CLASSES_HEADER__
+  #define __EMBEDDED_TOOLS_CLASSES_HEADER__
 
   #ifdef __cplusplus
     extern "C" {
   #endif
 
   /*!
-    EmbeddedTools system libraries.
+    RTOS Library
+  */
+  #include <EmbeddedTools.h>
+
+  /*!
+    Interface Libraries
   */
   #include "./Bitwise.h"
   #include "./SoftMath.h"
   #include "./SoftDecimal.h"
-  #include "./Attribute.h"
-  #include "./Configs.h"
 
   #ifdef __cplusplus
     }

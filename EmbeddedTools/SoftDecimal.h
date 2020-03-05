@@ -114,14 +114,29 @@
       /*!
         These macros are for facilitate the use of this library.
       */
-      #define SoftDecimal_floatSum(...)                                                         SoftDecimal_floatSum(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
-      #define SoftDecimal_fixedSum(...)                                                         SoftDecimal_fixedSum(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
-      #define SoftDecimal_floatSubtract(...)                                                    SoftDecimal_floatSubtract(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
-      #define SoftDecimal_fixedSubtract(...)                                                    SoftDecimal_fixedSubtract(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
-      #define SoftDecimal_floatMultiply(...)                                                    SoftDecimal_floatMultiply(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
-      #define SoftDecimal_fixedMultiply(...)                                                    SoftDecimal_fixedMultiply(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
-      #define SoftDecimal_floatDivide(...)                                                      SoftDecimal_floatDivide(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
-      #define SoftDecimal_fixedDivide(...)                                                      SoftDecimal_fixedDivide(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
+      #define SoftDecimal_floatSum(...)\
+        SoftDecimal_floatSum(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
+      
+      #define SoftDecimal_fixedSum(...)\
+        SoftDecimal_fixedSum(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
+      
+      #define SoftDecimal_floatSubtract(...)\
+        SoftDecimal_floatSubtract(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
+
+      #define SoftDecimal_fixedSubtract(...)\
+        SoftDecimal_fixedSubtract(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
+
+      #define SoftDecimal_floatMultiply(...)\
+        SoftDecimal_floatMultiply(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
+
+      #define SoftDecimal_fixedMultiply(...)\
+        SoftDecimal_fixedMultiply(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
+      
+      #define SoftDecimal_floatDivide(...)\
+        SoftDecimal_floatDivide(sizeof((float []) {__VA_ARGS__}) / sizeof(float), __VA_ARGS__)
+      
+      #define SoftDecimal_fixedDivide(...)\
+        SoftDecimal_fixedDivide(sizeof((__AUTO_SIZE_LIST_TYPE__ []) {__VA_ARGS__}) / sizeof(__AUTO_SIZE_LIST_TYPE__), __VA_ARGS__)
 
       fixed_t (SoftDecimal_fixedSum)(long int iAmountOfNumbers, ...);                           /*!< fixed_t type function. */
       fixed_t (SoftDecimal_floatSum)(long int iAmountOfNumbers, ...);                           /*!< fixed_t type function. */

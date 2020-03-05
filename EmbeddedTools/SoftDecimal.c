@@ -12,20 +12,26 @@
   /*!
     This macro is for facilitate the use of this library.
   */
-  #define __ROUNDING_FACTOR__                                                 ((uint32_t)1 << (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1))
+  #define __ROUNDING_FACTOR__\
+    ((uint32_t)1 << (__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1))
 
   //! Macro: fixed_t Type Abrangency
   /*!
     These macros are for facilitate the use of this library.
   */
-  #define __SOFT_DECIMAL_MINIMUM_VALUE__                                      (-((int32_t)1 << ((sizeof(fixed_t) << 3) - __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1)))
-  #define __SOFT_DECIMAL_RESOLUTION__                                         (pow(2, (-(__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1))))
-  #define __SOFT_DECIMAL_MAXIMUM_VALUE__                                      (-(__SOFT_DECIMAL_MINIMUM_VALUE__ + __SOFT_DECIMAL_RESOLUTION__))
+  #define __SOFT_DECIMAL_MINIMUM_VALUE__\
+    (-((int32_t)1 << ((sizeof(fixed_t) << 3) - __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1)))
+  
+  #define __SOFT_DECIMAL_RESOLUTION__\
+    (pow(2, (-(__SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ - 1))))
+  
+  #define __SOFT_DECIMAL_MAXIMUM_VALUE__\
+    (-(__SOFT_DECIMAL_MINIMUM_VALUE__ + __SOFT_DECIMAL_RESOLUTION__))
 
   float fMinimumValue = -1.0;                                                 /*!< float type. */
   float fResolution = -1.0;                                                   /*!< float type. */
   float fMaximumValue = -1.0;                                                 /*!< float type. */
-  bool bReachedLimitFlag = false;                                             /*!< bool float type. */
+  bool bReachedLimitFlag = false;                                             /*!< bool type. */
 
   //! Function: Minimum value getter
   /*!

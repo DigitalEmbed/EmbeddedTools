@@ -6,6 +6,7 @@
   Permissions of this copyleft license are conditioned on making available
   complete source code of licensed works and modifications under the same
   license or the GNU GPLv3. Copyright and license notices must be preserved.
+  
   Contributors provide an express grant of patent rights. However, a larger
   work using the licensed work through interfaces provided by the licensed
   work may be distributed under different terms and without source code for
@@ -58,10 +59,10 @@
       Set several bits of a number.
       \param uiNumber is an undefined parameter. It is the number that will have your bits seted.
       \param uiPosition is an undefined parameter. Position 0 is the least significant bit in the number.
-      \param uiNumberOfBits is an undefined parameter. It is the number of bits that will be set.
+      \param uiAmountOfBits is an undefined parameter. It is the number of bits that will be set.
     */
-    #define Bitwise_setBits(uiNumber, uiPosition, uiNumberOfBits)\
-      (uiNumber) |= ((uiNumberOfBits) << (uiPosition))
+    #define Bitwise_setBits(uiNumber, uiPosition, uiAmountOfBits)\
+      (uiNumber) |= ((uiAmountOfBits) << (uiPosition))
 
     //! Macro: Set a Byte
     /*!
@@ -72,11 +73,11 @@
     #define Bitwise_setByte(uiNumber, uiPosition)\
       (uiNumber) |= (255 << ((uiPosition) << 3))
 
-
     //! Macro: Erase a Bit
     /*!
       Erase a bit of a number.
-      \param uiNumber É um parâmetro indefinido. É o número que terá seu bit apagado.
+      \param uiNumber is an undefined parameter. It is the number that will have it byte seted
+      \param uiPosition is an undefined parameter. Position 0 is the least significant bit in the number.
     */
     #define Bitwise_clearBit(uiNumber, uiPosition)\
       (uiNumber) &= ~(1 << (uiPosition))
@@ -86,10 +87,10 @@
       Erase several bits of a number.
       \param uiNumber is an undefined parameter. It is the number that will have your bits erased.
       \param uiPosition is an undefined parameter. Position 0 is the least significant number in the number.
-      \param uiNumberOfBits is an undefined parameter. It is the number of bits that will be erase.
+      \param uiAmountOfBits is an undefined parameter. It is the number of bits that will be erase.
     */
-    #define Bitwise_clearBits(uiNumber, uiPosition, uiNumberOfBits)\
-      (uiNumber) &= ~(((1 << (uiNumberOfBits)) - 1) << (uiPosition))
+    #define Bitwise_clearBits(uiNumber, uiPosition, uiAmountOfBits)\
+      (uiNumber) &= ~(((1 << (uiAmountOfBits)) - 1) << (uiPosition))
 
     //! Macro: Erase a Byte
     /*!
@@ -115,11 +116,11 @@
       Returns a selection of bits of a number.
       \param uiNumber is an undefined parameter. It is the number that will have your bits selected.
       \param uiPositionByte is an undefined parameter. Position 0 is the least significant bit in the number.
-      \param uiNumberOfBits It is an undefined parameter. It is the number of bits that will be erased.
+      \param uiAmountOfBits It is an undefined parameter. It is the number of bits that will be erased.
       \return "Returns" bit selection of the "uiNumber" parameter.
     */
-    #define Bitwise_readBits(uiNumber, uiPosition, uiNumberOfBits)\
-      ((((1 << (uiNumberOfBits)) - 1) << (uiPosition)) & (uiNumber))
+    #define Bitwise_readBits(uiNumber, uiPosition, uiAmountOfBits)\
+      ((((1 << (uiAmountOfBits)) - 1) << (uiPosition)) & (uiNumber))
 
     //! Macro: Read a Byte
     /*!
@@ -148,18 +149,29 @@
     #define Bitwise_toggleAllBits(uiNumber)\
       (uiNumber) = ~(uiNumber) + 1
 
-    //! Macro: Copy Bits
+    //! Macro: Copy Bit
     /*!
-      Copy bits from one number and paste them into another number.
+      Copy a bit from a number and paste them into another number.
       \param uiDestiny is an undefined parameter. It is the number that will have its bits replaced.
       \param uiDestinyBitPosition is an undefined parameter. Position 0 is the least significant digit of the "uiDestiny" parameter.
       \param uiNumber is an undefined parameter. It is the number that will have your bits selected.
       \param uiDestinyBitPosition is an undefined parameter. Position 0 is the least significant digit of the "uiNumber" parameter.
-      \param uiNumberOfBits It is an undefined parameter. It is the bit_numberOfBits that will be copied.
     */
-    #define Bitwise_copyBits(uiDestiny, uiDestinyBitPosition, uiNumber, uiNumberBitPosition, uiNumberOfBits)\
-      Bitwise_clearBits((uiDestiny), (uiDestinyBitPosition), (uiNumberOfBits));\
-      (uiDestiny) |= (((Bitwise_readBits((uiNumber), (uiNumberBitPosition), (uiNumberOfBits))) >> (uiNumberBitPosition)) << (uiDestinyBitPosition));
+    #define Bitwise_copyBit(uiDestiny, uiDestinyBitPosition, uiNumber, uiNumberBitPosition)\
+      (uiDestiny) = ((uiDestiny & (~(1 << (uiDestinyBitPosition)))) | ((((uiDestiny) >> (uiNumberBitPosition)) & 1) << uiDestinyBitPosition))
+
+    //! Macro: Copy Bits
+    /*!
+      Copy bits from a number and paste them into another number.
+      \param uiDestiny is an undefined parameter. It is the number that will have its bits replaced.
+      \param uiDestinyBitPosition is an undefined parameter. Position 0 is the least significant digit of the "uiDestiny" parameter.
+      \param uiNumber is an undefined parameter. It is the number that will have your bits selected.
+      \param uiDestinyBitPosition is an undefined parameter. Position 0 is the least significant digit of the "uiNumber" parameter.
+      \param uiAmountOfBits It is an undefined parameter. It is the bit_numberOfBits that will be copied.
+    */
+    #define Bitwise_copyBits(uiDestiny, uiDestinyBitPosition, uiNumber, uiNumberBitPosition, uiAmountOfBits)\
+      Bitwise_clearBits((uiDestiny), (uiDestinyBitPosition), (uiAmountOfBits));\
+      (uiDestiny) |= (((Bitwise_readBits((uiNumber), (uiNumberBitPosition), (uiAmountOfBits))) >> (uiNumberBitPosition)) << (uiDestinyBitPosition));
 
     //! Macro: Copy a Byte
     /*!
