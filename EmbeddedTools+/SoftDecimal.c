@@ -64,7 +64,7 @@
       .getMinimumValue = &SoftDecimal_getMinimumValue,
       .getMaximumValue = &SoftDecimal_getMaximumValue,
       .getResolution = &SoftDecimal_getResolution,
-      .checkError = &SoftDecimal_error
+      .checkError = &SoftDecimal_checkError
     };
 
   #else
@@ -95,7 +95,7 @@
       .getMinimumValue = &SoftDecimal_getMinimumValue,
       .getMaximumValue = &SoftDecimal_getMaximumValue,
       .getResolution = &SoftDecimal_getResolution,
-      .checkError = &SoftDecimal_error
+      .checkError = &SoftDecimal_checkError
     };
 
   #endif
