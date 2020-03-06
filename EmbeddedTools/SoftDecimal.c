@@ -80,7 +80,7 @@
     Checks if any limits were reached during any operation.
     \return Returns true in positive case or false in negative case.
   */
-  bool SoftDecimal_error(void){
+  bool SoftDecimal_checkError(void){
     if (bReachedLimitFlag == true){
       bReachedLimitFlag = false;
       return true;
