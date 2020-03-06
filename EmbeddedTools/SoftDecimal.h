@@ -6,6 +6,7 @@
   Permissions of this copyleft license are conditioned on making available
   complete source code of licensed works and modifications under the same
   license or the GNU GPLv3. Copyright and license notices must be preserved.
+  
   Contributors provide an express grant of patent rights. However, a larger
   work using the licensed work through interfaces provided by the licensed
   work may be distributed under different terms and without source code for
@@ -163,7 +164,7 @@
     float SoftDecimal_getMinimumValue(void);                                                    /*!< float type function. */
     float SoftDecimal_getMaximumValue(void);                                                    /*!< float type function. */
     float SoftDecimal_getResolution(void);                                                      /*!< float type function. */
-    bool SoftDecimal_error(void);                                                               /*!< boolean type function. */
+    bool SoftDecimal_checkError(void);                                                               /*!< boolean type function. */
 
     #ifdef __cplusplus
       }
