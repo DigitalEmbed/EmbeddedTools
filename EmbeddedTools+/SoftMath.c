@@ -10,7 +10,7 @@
   int64_t __SoftMath_negative(int32_t i32Number);                                       /*!< int64_t "method". */
   uint64_t __SoftMath_module(int64_t i64Number);                                        /*!< uint64_t "method". */
   int64_t __SoftMath_twice(int64_t i64Number);                                          /*!< int64_t "method". */
-  int64_t __SoftMath_half(int64_t i64Number);                                           /*!< int64_t "method". */
+  int64_t __SoftMath_half(int64_t i64Half);                                             /*!< int64_t "method". */
   int64_t __SoftMath_multiply(int64_t i64Number, uint16_t ui16ExpoentOfTwo);            /*!< int64_t "method". */
   int64_t __SoftMath_divide(int64_t i64Number, uint16_t ui16ExpoentOfTwo);              /*!< int64_t "method". */
   int64_t __SoftMath_divisionRest(int64_t i64Number, uint16_t ui16ExpoentOfTwo);        /*!< int64_t "method". */
@@ -64,8 +64,8 @@
   /*!
     Calculates half a number.
   */
-  int64_t __SoftMath_half(int64_t i64Number){
-    return SoftMath_half(i64Number);
+  int64_t __SoftMath_half(int64_t i64Half){
+    return SoftMath_half(i64Half);
   }
 
   //! Public Method: Multiplication

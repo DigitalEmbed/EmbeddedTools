@@ -1,4 +1,4 @@
-#include "EmbeddedTools/EmbeddedTools.h"
+#include "../EmbeddedTools/EmbeddedTools.h"
 
 #if defined(__BITWISE_MANAGER_ENABLE__)
 

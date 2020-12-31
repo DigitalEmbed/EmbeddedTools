@@ -57,7 +57,7 @@
       int64_t (*negative)(int32_t i32Number);                                       /*!< int64_t "method". */
       uint64_t (*module)(int64_t i64Number);                                        /*!< uint64_t "method". */
       int64_t (*twice)(int64_t i64Number);                                          /*!< int64_t "method". */
-      int64_t (*half)(int64_t i64Number);                                           /*!< int64_t "method". */
+      int64_t (*half)(int64_t i64Half);                                             /*!< int64_t "method". */
       int64_t (*multiply)(int64_t i64Number, uint16_t ui16ExpoentOfTwo);            /*!< int64_t "method". */
       int64_t (*divide)(int64_t i64Number, uint16_t ui16ExpoentOfTwo);              /*!< int64_t "method". */
       int64_t (*divisionRest)(int64_t i64Number, uint16_t ui16ExpoentOfTwo);        /*!< int64_t "method". */
